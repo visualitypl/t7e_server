@@ -42,6 +42,10 @@ module Action
           parent = nil
         end
 
+        if pair.key_type.eql?(:key)
+          te.translations.build(value: pair.value, language: Language.find_by_iso_code!('en'))
+        end
+
         te.parent_entry = parent
         te.save!
       end
