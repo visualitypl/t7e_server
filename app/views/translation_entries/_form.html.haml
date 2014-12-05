@@ -1,0 +1,12 @@
+= simple_form_for(@translation_entry) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :key
+    = f.input :type
+    = f.association :parent_entry
+    = f.input :path
+    = f.association :project
+
+  .form-actions
+    = f.button :submit

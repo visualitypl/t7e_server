@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  key: MyString
+  type: 1
+  parent_entry_id: 
+  path: MyString
+  project_id: 
+
+two:
+  key: MyString
+  type: 1
+  parent_entry_id: 
+  path: MyString
+  project_id: 
