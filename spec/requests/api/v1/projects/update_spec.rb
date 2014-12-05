@@ -5,7 +5,11 @@ describe "Projects API #update" do
   context 'with proper params (so api_key, language, and yaml_string' do
     let(:api_key) { ApiKey.create(:project_id => project.id).access_token }
     let(:yaml_string) do
-      YAML.load(File.read("config/locales/en.yml")).to_s
+      File.read("config/locales/en.yml")
+    end
+
+    before do
+      Language.create!(:name => "english", :iso_code => 'en')
     end
 
     it "saves translations to db" do
@@ -16,5 +20,4 @@ describe "Projects API #update" do
       expect(response).to be_success
     end
   end
-
 end

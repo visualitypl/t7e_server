@@ -6,7 +6,7 @@ class Action::Api::V1::UpdateYaml
   end
 
   def execute
-    Action::ImportYaml.new(@project, @language, @yaml).save_to_db
+    Action::ImportYAML.new(@project.id, @language, @yaml).save_to_db
   end
 
   def success?
