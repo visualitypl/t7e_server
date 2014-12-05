@@ -1,0 +1,31 @@
+%h1 Listing translation_entries
+
+- if @translation_entry && @translation_entry.parent_entry#TODO: fix it
+  = link_to 'Back', project_translation_entry_path(id: @translation_entry.parent_entry)
+%table
+  %thead
+    %tr
+      %th Key
+      %th Key Type
+      %th Path
+      %th
+      %th
+      %th
+
+  %tbody
+    - @translation_entries.each do |translation_entry|
+      %tr
+        %td= translation_entry.key
+        %td= translation_entry.key_type
+        %td= translation_entry.path
+        %td
+          - if translation_entry.key?
+            = link_to 'Show', project_translation_entry_translations_path(translation_entry_id: translation_entry)
+          - else
+            = link_to 'Show', project_translation_entry_path(id: translation_entry)
+        -#%td= link_to 'Edit', edit_translation_entry_path(translation_entry)
+        -#%td= link_to 'Destroy', translation_entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+      %br
+
+      -#= link_to 'New Translation entry', new_translation_entry_path

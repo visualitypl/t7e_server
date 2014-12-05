@@ -15,13 +15,19 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   end
 
   def update
-    render :json => {}
-    # pseudo code
-    # action = sarkircreateyaml
-    # if action.success
-    #   render json => {"ok"}
-    # else
-    #   render :json => {'siktir'}
-    # end
+    action = Action::Api::V1::UpdateYaml.new(
+      update_params.merge(:project => current_project))
+
+    if action.execute
+      render :json => {}
+    else
+      render :json => {}, :status => 422
+    end
+  end
+
+  private
+
+  def update_params
+    params.permit(:yaml, :language)
   end
 end
