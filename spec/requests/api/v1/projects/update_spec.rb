@@ -2,6 +2,7 @@ require "spec_helper"
 
 describe "Projects API #update" do
   let(:project) { create(:project) }
+
   context 'with proper params (so api_key, language, and yaml_string' do
     let(:api_key) { ApiKey.create(:project_id => project.id).access_token }
     let(:yaml_string) do

@@ -8,8 +8,4 @@ class Action::Api::V1::UpdateYaml
   def execute
     Action::ImportYAML.new(@project.id, @language, @yaml).save_to_db
   end
-
-  def success?
-
-  end
 end

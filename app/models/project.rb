@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  after_create :session_api_key
+
   has_many :api_keys
 
   has_many :translation_entries
