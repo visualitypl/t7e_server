@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  resources :translations
 
   resources :languages
 
-  resources :translation_entries
-
+  resources :projects do
+    resources :translation_entries do
+      resources :translations
+    end
+  end
   devise_for :users
 
   root 'home#index'
