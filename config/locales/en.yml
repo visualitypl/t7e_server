@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      hello: 'Hello'
+      welcome: 'Welcome'
+      other_messages:
+        message_1: 'Message 1'
