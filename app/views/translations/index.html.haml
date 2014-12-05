@@ -1,5 +1,7 @@
 %h1 Listing translations
 
+- if @translation_entry && @translation_entry.parent_entry#TODO: fix it
+  = link_to 'Back', project_translation_entry_path(id: @translation_entry.parent_entry)
 .translations
   - @translations.each do |translation|
     .translation
