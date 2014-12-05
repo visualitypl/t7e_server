@@ -1,0 +1,29 @@
+%h1 Listing translation_entries
+
+%table
+  %thead
+    %tr
+      %th Key
+      %th Key Type
+      %th Parent entry
+      %th Path
+      %th Project
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @translation_entries.each do |translation_entry|
+      %tr
+        %td= translation_entry.key
+        %td= translation_entry.key_type
+        %td= translation_entry.parent_entry
+        %td= translation_entry.path
+        %td= translation_entry.project
+        %td= link_to 'Show', translation_entry
+        %td= link_to 'Edit', edit_translation_entry_path(translation_entry)
+        %td= link_to 'Destroy', translation_entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Translation entry', new_translation_entry_path
