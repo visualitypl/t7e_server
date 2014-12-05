@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :languages
+
   resources :translation_entries
 
   devise_for :users

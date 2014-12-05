@@ -1,0 +1,9 @@
+= simple_form_for(@language) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :iso_code
+
+  .form-actions
+    = f.button :submit
