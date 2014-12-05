@@ -29,28 +29,31 @@ module Action
     def save_to_db
       get_pairs
       @pairs.each do |pair|
-        te = TranslationEntry.new
-        te.key = pair.key
-        te.path = pair.path
-        te.key_type = pair.key_type.to_s
-        te.project = @project
+        te = TranslationEntry.where(path: pair.path, project: @project).first
+        if !te
+          te = TranslationEntry.new
+          te.key = pair.key
+          te.path = pair.path
+          te.key_type = pair.key_type.to_s
+          te.project = @project
 
-#finding parent #TODO: refactor
-        if pair.parent
-          parent = TranslationEntry.where(path: pair.parent.path, project: @project).first
-          unless parent
-            parent = TranslationEntry.create!(path: pair.parent.path, key_type: 'block', project: @project)
+  #finding parent #TODO: refactor
+          if pair.parent
+            parent = TranslationEntry.where(path: pair.parent.path, project: @project).first
+            unless parent
+              parent = TranslationEntry.create!(path: pair.parent.path, key_type: 'block', project: @project)
+            end
+          else
+            parent = nil
           end
-        else
-          parent = nil
-        end
 
-        if pair.key_type.eql?(:key)
-          te.translations.build(value: pair.value, language: Language.find_by_iso_code!(@language_iso_code))
-        end
+          if pair.key_type.eql?(:key)
+            te.translations.build(value: pair.value, language: Language.find_by_iso_code!(@language_iso_code))
+          end
 
-        te.parent_entry = parent
-        te.save!
+          te.parent_entry = parent
+          te.save!
+        end
       end
     end
 
