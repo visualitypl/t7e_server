@@ -1,4 +1,4 @@
-class Action::Api::V1::UpdateYaml
+class Action::Api::V1::ShowYaml
   def initialize(params)
     @project  = params['project']
     @language = params['language']
@@ -6,6 +6,6 @@ class Action::Api::V1::UpdateYaml
   end
 
   def execute
-    Action::ImportYAML.new(@project.id, @language, @yaml).save_to_db
+    Action::GetYAML.new(@project.id, @language, @yaml).save_to_db
   end
 end

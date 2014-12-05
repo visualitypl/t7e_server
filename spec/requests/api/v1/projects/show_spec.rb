@@ -5,10 +5,14 @@ describe 'Projects API #show' do
 
   context 'with proper project api key' do
     let(:api_key) { ApiKey.create(:project_id => project.id).access_token }
-    # let(:headers) { { 'Authorization' => "Bearer #{api_key}" } }
+    let(:yaml_string) do
+      File.read("config/locales/en.yml")
+    end
 
     it 'succeds' do
-      get "/api/v1/projects/#{api_key}"
+     get "/api/v1/projects/#{api_key}", {
+        :yaml => yaml_string,
+        :language => 'en'}
 
       expect(response).to be_success
     end

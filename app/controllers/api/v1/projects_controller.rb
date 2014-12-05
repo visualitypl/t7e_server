@@ -3,15 +3,14 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   before_filter :ensure_project_exists, :only => [:show, :update]
 
   def show
-    render :json => {}
-    # pseudocode
-    # action = someactiontofindproperlanguage
+    action = Action::Api::V1::ShowYaml.new(
+      show_params.merge(:project => current_project))
 
-    # if action.success
-    #   render :json => action.text
-    # else
-    #   render :json => {'siktir'}
-    # end
+    if action.execute
+      render :json => {}
+    else
+      render :json => {}, :status => 422
+    end
   end
 
   def update
@@ -28,6 +27,10 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   private
 
   def update_params
+    params.permit(:yaml, :language)
+  end
+
+  def show_params
     params.permit(:yaml, :language)
   end
 end
