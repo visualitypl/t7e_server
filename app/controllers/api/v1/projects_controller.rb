@@ -31,6 +31,6 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   end
 
   def show_params
-    params.permit(:yaml, :language)
+    params.permit(:language)
   end
 end

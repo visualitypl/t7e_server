@@ -9,9 +9,13 @@ describe 'Projects API #show' do
       File.read("config/locales/en.yml")
     end
 
+    before do
+      Language.create!(:name => "english", :iso_code => 'en')
+      project.translation_entries.create!(:key => 'en', :key_type => 1, :path => 'en')
+    end
+
     it 'succeds' do
      get "/api/v1/projects/#{api_key}", {
-        :yaml => yaml_string,
         :language => 'en'}
 
       expect(response).to be_success
