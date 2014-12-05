@@ -14,8 +14,10 @@ end
 module Action
   class ImportYAML
 
-    def initialize(yaml_file_path = "config/locales/en.yml")
-      @hash = YAML.load(File.read(yaml_file_path))
+    def initialize(project_id, language_iso_code, yaml_string)
+      @hash = YAML.load(yaml_string)
+      @project = Project.find(project_id)
+      @language_iso_code = language_iso_code
     end
 
     def get_pairs
@@ -31,19 +33,20 @@ module Action
         te.key = pair.key
         te.path = pair.path
         te.key_type = pair.key_type.to_s
+        te.project = @project
 
 #finding parent #TODO: refactor
         if pair.parent
-          parent = TranslationEntry.where(path: pair.parent.path).first
+          parent = TranslationEntry.where(path: pair.parent.path, project: @project).first
           unless parent
-            parent = TranslationEntry.create!(path: pair.parent.path, key_type: 'block')
+            parent = TranslationEntry.create!(path: pair.parent.path, key_type: 'block', project: @project)
           end
         else
           parent = nil
         end
 
         if pair.key_type.eql?(:key)
-          te.translations.build(value: pair.value, language: Language.find_by_iso_code!('en'))
+          te.translations.build(value: pair.value, language: Language.find_by_iso_code!(@language_iso_code))
         end
 
         te.parent_entry = parent
