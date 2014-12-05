@@ -2,14 +2,14 @@
 
 one:
   key: MyString
-  type: 1
+  key_type: 1
   parent_entry_id: 
   path: MyString
   project_id: 
 
 two:
   key: MyString
-  type: 1
+  key_type: 1
   parent_entry_id: 
   path: MyString
   project_id: 

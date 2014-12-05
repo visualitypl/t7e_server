@@ -4,7 +4,7 @@
   %thead
     %tr
       %th Key
-      %th Type
+      %th Key Type
       %th Parent entry
       %th Path
       %th Project
@@ -16,7 +16,7 @@
     - @translation_entries.each do |translation_entry|
       %tr
         %td= translation_entry.key
-        %td= translation_entry.type
+        %td= translation_entry.key_type
         %td= translation_entry.parent_entry
         %td= translation_entry.path
         %td= translation_entry.project

@@ -18,7 +18,7 @@ class TranslationEntriesControllerTest < ActionController::TestCase
 
   test "should create translation_entry" do
     assert_difference('TranslationEntry.count') do
-      post :create, translation_entry: { key: @translation_entry.key, parent_entry_id: @translation_entry.parent_entry_id, path: @translation_entry.path, project_id: @translation_entry.project_id, type: @translation_entry.type }
+      post :create, translation_entry: { key: @translation_entry.key, parent_entry_id: @translation_entry.parent_entry_id, path: @translation_entry.path, project_id: @translation_entry.project_id, key_type: @translation_entry.type }
     end
 
     assert_redirected_to translation_entry_path(assigns(:translation_entry))
@@ -35,7 +35,7 @@ class TranslationEntriesControllerTest < ActionController::TestCase
   end
 
   test "should update translation_entry" do
-    patch :update, id: @translation_entry, translation_entry: { key: @translation_entry.key, parent_entry_id: @translation_entry.parent_entry_id, path: @translation_entry.path, project_id: @translation_entry.project_id, type: @translation_entry.type }
+    patch :update, id: @translation_entry, translation_entry: { key: @translation_entry.key, parent_entry_id: @translation_entry.parent_entry_id, path: @translation_entry.path, project_id: @translation_entry.project_id, key_type: @translation_entry.type }
     assert_redirected_to translation_entry_path(assigns(:translation_entry))
   end
 

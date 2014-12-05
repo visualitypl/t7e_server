@@ -42,6 +42,6 @@ class TranslationEntriesController < ApplicationController
     end
 
     def translation_entry_params
-      params.require(:translation_entry).permit(:key, :type, :parent_entry_id, :path, :project_id)
+      params.require(:translation_entry).permit(:key, :key_type, :parent_entry_id, :path, :project_id)
     end
 end
