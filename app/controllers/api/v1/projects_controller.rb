@@ -6,8 +6,9 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     action = Action::Api::V1::ShowYaml.new(
       show_params.merge(:project => current_project))
 
-    if action.execute
-      render :json => {}
+    yaml_text = action.execute
+    if yaml_text
+      render :text=> yaml_text
     else
       render :json => {}, :status => 422
     end
