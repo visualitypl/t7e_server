@@ -16,6 +16,7 @@ gem 'devise'
 gem 'factory_girl_rails', :require => false
 gem 'minitest'
 gem 'faker'
+gem 'bourbon'
 
 group :development, :test do
   gem 'better_errors'
