@@ -7,7 +7,7 @@
     = csrf_meta_tags
   %body
     %section.header-nav
-      %nav.navbar.navbar-default{:role => "navigation"}
+      %nav.navbar.navbar-inverse{:role => "navigation"}
         .container-fluid
           / Brand and toggle get grouped for better mobile display
           .navbar-header
@@ -26,18 +26,9 @@
                   Dropdown
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}
-                  %li
-                    %a{:href => "#"} Action
-                  %li
-                    %a{:href => "#"} Another action
-                  %li
-                    %a{:href => "#"} Something else here
-                  %li.divider
-                  %li
-                    %a{:href => "#"} Separated link
-                  %li.divider
-                  %li
-                    %a{:href => "#"} One more separated link
+                  - Project.all.each do |project|
+                    %li
+                      = link_to project.name, project_translation_entries_path(project)
                 %li
                   %a{:href => "#"} Link
             %ul.nav.navbar-nav.navbar-right
@@ -59,7 +50,14 @@
             %form.navbar-form.navbar-right{:role => "search"}
               .form-group
                 %input.form-control{:placeholder => "Search", :type => "text"}/
-              %button.btn.btn-default{:type => "submit"} Submit
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    - if notice
+      .alert.alert-success
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+        .text-center.font-bold= notice
+
+    - if alert
+      .alert.alert-danger
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+        .text-center.font-bold= alert
+    .container
+      = yield
