@@ -1,4 +1,9 @@
 class TranslationEntry < ActiveRecord::Base
-  belongs_to :parent_entry
+  enum type: [ :key, :block ]
+
+  belongs_to :parent_entry, class_name: TranslationEntry
   belongs_to :project
+
+  has_many :translations, dependent: :destroy
+
 end
