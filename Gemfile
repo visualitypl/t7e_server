@@ -17,6 +17,8 @@ gem 'factory_girl_rails', :require => false
 gem 'minitest'
 gem 'faker'
 gem 'bourbon'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'better_errors'
