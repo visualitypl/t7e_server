@@ -9,7 +9,7 @@ module Action
     end
 
     def get_yaml
-      root_key = @project.translation_entries.where('parent_key_id IS NULL').first!
+      root_key = @project.translation_entries.where('parent_entry_id IS NULL').first!
       hash = directory_hash(root_key, root_key.key)
       hash.to_yaml
     end
@@ -22,7 +22,7 @@ module Action
           children << directory_hash(entry, entry.key)
         else
           children << {
-              entry.key => Translation.where(translation_entry: entry, language: @language)
+              entry.key => (Translation.where(translation_entry: entry, language: @language).first.try(:value) ||'')
           }
         end
       end
