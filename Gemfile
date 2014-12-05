@@ -13,10 +13,15 @@ gem 'haml'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'devise'
+gem 'factory_girl_rails', :require => false
+gem 'minitest'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'rspec'
+  gem 'rspec-rails'
 end
 
