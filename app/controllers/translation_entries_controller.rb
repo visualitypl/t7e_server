@@ -1,14 +1,16 @@
 class TranslationEntriesController < ApplicationController
+  before_action :set_project
   before_action :set_translation_entry, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @translation_entries = TranslationEntry.all
+    @translation_entries = @project.translation_entries.where('parent_entry_id IS NULL').all
     respond_with(@translation_entries)
   end
 
   def show
+    @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).all
     respond_with(@translation_entry)
   end
 
@@ -37,6 +39,10 @@ class TranslationEntriesController < ApplicationController
   end
 
   private
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_translation_entry
       @translation_entry = TranslationEntry.find(params[:id])
     end
