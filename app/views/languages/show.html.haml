@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @language.name
+%p
+  %b Iso code:
+  = @language.iso_code
+
+= link_to 'Edit', edit_language_path(@language)
+\|
+= link_to 'Back', languages_path
