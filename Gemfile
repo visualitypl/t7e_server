@@ -19,6 +19,7 @@ gem 'faker'
 gem 'bourbon'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'better_errors'
