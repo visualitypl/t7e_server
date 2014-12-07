@@ -19,7 +19,9 @@
       .panel-body.no-border.file-list{ :style => "padding-top: 0" }
         .row.two-button
           .col-xs-3.bg-blue.text-center
-            %span.glyphicon.glyphicon-chevron-left
+            - if @translation_entry && @translation_entry.parent_entry#TODO: fix it
+              = link_to project_translation_entry_path(id: @translation_entry.parent_entry) do
+                %span.glyphicon.glyphicon-chevron-left
           .col-xs-9
             .dropdown.grey-dropdown.file-search
               %button#dropdownMenu1.btn.btn-grey.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :type => "button"}
@@ -39,173 +41,20 @@
 
       .panel-body.no-padding.no-border.file-list
         %ul.list-group.no-border.file-list
-          %li.list-group-item.no-border.even
-            %i.fa.fa-folder.text-blue.marg-right-sm
-            %span Folder
-          %li.list-group-item.no-border.odd
-            %i.fa.fa-folder.text-blue.marg-right-sm
-            %span Folder
-          %li.list-group-item.no-border.even
-            %i.fa.fa-file-text-o.text-blue.marg-right-sm
-            %span File
-          %li.list-group-item.no-border.odd
-            %i.fa.fa-file-text-o.text-blue.marg-right-sm
-            %span File
-          %li.list-group-item.no-border.even
-            %i.fa.fa-file-text-o.text-blue.marg-right-sm
-            %span File
+          - @translation_entries.each do |translation_entry|
+            %li.list-group-item.no-border{class: cycle('even', 'odd')}
+              %i.fa.text-blue.marg-right-sm{class: translation_entry.block? ? 'fa-folder' : 'fa-file-text-o'}
+              %span
+                - if translation_entry.key?
+                  = link_to translation_entry.key, project_translation_entry_translations_path(translation_entry_id: translation_entry)
+                - else
+                  = link_to translation_entry.key, project_translation_entry_path(id: translation_entry)
   .col-lg-9
     .well.text-center.no-border-radius
-      .btn.btn-primary.padder-v-lg.text-uppercase
-        Add
+      = link_to new_project_translation_entry_path do
+        .btn.btn-primary.padder-v-lg.text-uppercase
+          Add
     #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
-      .panel.panel-default.no-border.no-border-radius
-        #headingOne.panel-heading.padder-v{:role => "tab"}
-          %h4.panel-title
-            .row.two-button
-              .col-xs-11.breadcrumbs-container
-                %ol.breadcrumb.marg-none
-                  %li
-                    %a{:href => "#"} Project
-                  %li
-                    %a{:href => "#"} errors
-                  %li.active.font-bold Data
-              .col-xs-1.text-center.bg-grey-light
-                %a.text-black.font-bold{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
-                  ^
-        #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
-          .panel-body.no-border-radius.translation-container
-            .row
-              .col-xs-2.text-left
-                %i.glyphicon.glyphicon-flag.text-blue.marg-right
-                %h4.font-bold.text-uppercase.inline en
-              .col-xs-8
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-              .col-xs-2.text-right
-                %select.form-control.input-sm
-                  %option{:value => "1"} Completed
-                  %option{:value => "2"} Incomplete
-                  %option{:value => "3"} Revision
-          .panel-body.no-border.no-border-radius.translation-container
-            .row
-              .col-xs-2.text-left
-                %i.glyphicon.glyphicon-flag.text-blue.marg-right
-                %h4.font-bold.text-uppercase.inline pl
-              .col-xs-8
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-              .col-xs-2.text-right
-                %select.form-control.input-sm
-                  %option{:value => "1"} Completed
-                  %option{:value => "2"} Incomplete
-                  %option{:value => "3"} Revision
-      .panel.panel-default.no-border.no-border-radius
-        #headingTwo.panel-heading.padder-v{:role => "tab"}
-          %h4.panel-title
-            .row.two-button
-              .col-xs-11.breadcrumbs-container
-                %ol.breadcrumb.marg-none
-                  %li
-                    %a{:href => "#"} Project
-                  %li
-                    %a{:href => "#"} Library
-                  %li.active.font-bold Data
-              .col-xs-1.text-center.bg-grey-light
-                %a.text-black.font-bold{"aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo"}
-                  ^
-        #collapseTwo.panel-collapse.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
-          .panel-body.no-border-radius.translation-container
-            .row
-              .col-xs-2.text-left
-                %i.glyphicon.glyphicon-flag.text-blue.marg-right
-                %h4.font-bold.text-uppercase.inline en
-              .col-xs-8
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-              .col-xs-2.text-right
-                %select.form-control.input-sm
-                  %option{:value => "1"} Completed
-                  %option{:value => "2"} Incomplete
-                  %option{:value => "3"} Revision
-          .panel-body.no-border.no-border-radius.translation-container
-            .row
-              .col-xs-2.text-left
-                %i.glyphicon.glyphicon-flag.text-blue.marg-right
-                %h4.font-bold.text-uppercase.inline pl
-              .col-xs-8
-                %textarea.form-control{:name => "", :rows => "3"}
-                .text-left.marg-top
-                  .btn.btn-success.btn-sm.text-uppercase Accept
-                  .btn.btn-grey.btn-sm.text-uppercase Reset
-              .col-xs-2.text-right
-                %select.form-control.input-sm
-                  %option{:value => "1"} Completed
-                  %option{:value => "2"} Incomplete
-                  %option{:value => "3"} Revision
-      .panel.panel-default.no-border.no-border-radius
-        #headingThree.panel-heading.padder-v{:role => "tab"}
-          %h4.panel-title
-            .row.two-button
-              .col-xs-11.breadcrumbs-container
-                %ol.breadcrumb.marg-none
-                  %li
-                    %a{:href => "#"} Project
-                  %li
-                    %a{:href => "#"} body
-                  %li.active.font-bold errors
-              .col-xs-1.text-center.bg-grey-light
-                %a.text-black.font-bold{"aria-controls" => "collapseThree", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseThree"}
-                  ^
-        #collapseThree.panel-collapse.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
-          .panel-body.no-border-radius.translation-container
-            .row
-              .col-xs-2.text-left
-                %i.glyphicon.glyphicon-flag.text-blue.marg-right
-                %h4.font-bold.text-uppercase.inline en
-              .col-xs-8
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-              .col-xs-2.text-right
-                %select.form-control.input-sm
-                  %option{:value => "1"} Completed
-                  %option{:value => "2"} Incomplete
-                  %option{:value => "3"} Revision
-          .panel-body.no-border.no-border-radius.translation-container
-            .row
-              .col-xs-2.text-left
-                %i.glyphicon.glyphicon-flag.text-blue.marg-right
-                %h4.font-bold.text-uppercase.inline pl
-              .col-xs-8
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-              .col-xs-2.text-right
-                %select.form-control.input-sm
-                  %option{:value => "1"} Completed
-                  %option{:value => "2"} Incomplete
-                  %option{:value => "3"} Revision
-
-    - if @translation_entry && @translation_entry.parent_entry#TODO: fix it
-      = link_to 'Back', project_translation_entry_path(id: @translation_entry.parent_entry)
-    %table
-      %thead
-        %tr
-          %th Key
-          %th Key Type
-          %th Path
-          %th
-          %th
-          %th
-
-      %tbody
-        - @translation_entries.each do |translation_entry|
-          %tr
-            %td= translation_entry.key
-            %td= translation_entry.key_type
-            %td= translation_entry.path
-            %td
-              - if translation_entry.key?
-                = link_to 'Show', project_translation_entry_translations_path(translation_entry_id: translation_entry)
-              - else
-                = link_to 'Show', project_translation_entry_path(id: translation_entry)
-            -#%td= link_to 'Edit', edit_translation_entry_path(translation_entry)
-            -#%td= link_to 'Destroy', translation_entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-          %br
-
-          -#= link_to 'New Translation entry', new_translation_entry_path
+      - @translation_entries.each do |translation_entry|
+        - if translation_entry.key?
+          = render partial: 'translation_entry_accordion', locals: {translation_entry: translation_entry}

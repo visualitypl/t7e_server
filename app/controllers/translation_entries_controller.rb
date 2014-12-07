@@ -5,12 +5,12 @@ class TranslationEntriesController < ApplicationController
   respond_to :html
 
   def index
-    @translation_entries = @project.translation_entries.where('parent_entry_id IS NULL').all
+    @translation_entries = @project.translation_entries.where('parent_entry_id IS NULL').order(:key_type => :desc).all
     respond_with(@translation_entries)
   end
 
   def show
-    @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).all
+    @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).order(:key_type => :desc).all
     respond_with(@translation_entry)
   end
 
