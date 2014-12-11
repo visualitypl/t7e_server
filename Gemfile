@@ -22,9 +22,9 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 
 group :development, :test do
-  gem 'better_errors'
+  # gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'byebug'
+  # gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec'
