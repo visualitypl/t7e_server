@@ -2,11 +2,12 @@ class TranslationEntriesController < ApplicationController
   before_action :set_project
   before_action :set_translation_entry, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @translation_entries = @project.translation_entries.where('parent_entry_id IS NULL').order(:key_type => :desc).all
-    respond_with(@translation_entries)
+    # respond_with(@translation_entries)
+    render 'show'
   end
 
   def show
