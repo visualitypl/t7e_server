@@ -28,6 +28,7 @@
         %i.fa.text-blue.marg-right-sm{class: translation_entry.block? ? 'fa-folder' : 'fa-file-text-o'}
         %span
           - if translation_entry.key?
-            = link_to translation_entry.key, project_translation_entry_translations_path(translation_entry_id: translation_entry), remote: true
+            = link_to translation_entry.key, show_key_project_translation_entry_path(id: translation_entry), remote: true
+            -#= link_to translation_entry.key, project_translation_entry_translations_path(translation_entry_id: translation_entry), remote: true
           - else
             = link_to translation_entry.key, project_translation_entry_path(id: translation_entry), remote: true

@@ -1,18 +1,33 @@
 class TranslationEntriesController < ApplicationController
   before_action :set_project
-  before_action :set_translation_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_translation_entry, only: [:show, :edit, :update, :destroy, :show_key]
 
   respond_to :html, :js
 
   def index
+    #TODO: refactor
     @translation_entries = @project.translation_entries.where('parent_entry_id IS NULL').order(:key_type => :desc).all
-    # respond_with(@translation_entries)
+    #for translations
+    @translation_keys = @project.translation_entries
+                            .where(parent_entry: @translation_entry).key.includes(:translations).all
     render 'show'
   end
 
   def show
+    #for directory listing
     @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).order(:key_type => :desc).all
+    #for translations
+    @translation_keys = @project.translation_entries
+                            .where(parent_entry: @translation_entry).key.includes(:translations).all
     respond_with(@translation_entry)
+  end
+
+  def show_key
+    @translation_keys = [@translation_entry]
+    @translation_entry = @translation_entry.parent_entry
+    @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).order(:key_type => :desc).all
+
+    render 'show'
   end
 
   def new

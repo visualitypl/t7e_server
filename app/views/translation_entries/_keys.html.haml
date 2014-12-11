@@ -1,4 +1,3 @@
 #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
-  - @translation_entries.each do |translation_entry|
-    - if translation_entry.key?
-      = render partial: 'translation_entry_accordion', locals: {translation_entry: translation_entry}
+  - @translation_keys.each do |translation_key|
+    = render partial: 'translation_entry_accordion', locals: {translation_key: translation_key}

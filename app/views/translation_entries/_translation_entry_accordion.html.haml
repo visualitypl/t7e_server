@@ -8,12 +8,12 @@
               %a{:href => "#"} Project
             %li
               %a{:href => "#"} errors
-            %li.active.font-bold= translation_entry.key
+            %li.active.font-bold= translation_key.key
         .col-xs-1.text-center.bg-grey-light
           %a.text-black.font-bold{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
             ^
   #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
-    - translation_entry.translations.each do |translation| #TODO: fix it
+    - translation_key.translations.each do |translation| #TODO: fix it
       .panel-body.no-border-radius.translation-container
         .row
           .col-xs-2.text-left
@@ -23,7 +23,7 @@
             -#.preview
             -#  = translation.value
             .inline-edit
-              = simple_form_for translation, url: project_translation_entry_translation_path(translation_entry_id: translation_entry.id, id: translation.id) do |f|
+              = simple_form_for translation, url: project_translation_entry_translation_path(translation_entry_id: translation_key.id, id: translation.id) do |f|
                 = f.error_notification
                 .form-inputs
                   = f.input :value, as: :text, label: false
