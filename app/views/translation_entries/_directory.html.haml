@@ -2,7 +2,7 @@
   .row.two-button
     .col-xs-3.bg-blue.text-center
       - if @translation_entry && @translation_entry.parent_entry#TODO: fix it
-        = link_to project_translation_entry_path(id: @translation_entry.parent_entry), remote: true do
+        = link_to project_translation_entry_path(id: @translation_entry.parent_entry), remote: true, class: 'directory-navigation-link' do
           %span.glyphicon.glyphicon-chevron-left
     .col-xs-9
       .dropdown.grey-dropdown.file-search
@@ -28,7 +28,7 @@
         %i.fa.text-blue.marg-right-sm{class: translation_entry.block? ? 'fa-folder' : 'fa-file-text-o'}
         %span
           - if translation_entry.key?
-            = link_to translation_entry.key, show_key_project_translation_entry_path(id: translation_entry), remote: true
+            = link_to translation_entry.key, show_key_project_translation_entry_path(id: translation_entry), remote: true, class: 'directory-navigation-link'
             -#= link_to translation_entry.key, project_translation_entry_translations_path(translation_entry_id: translation_entry), remote: true
           - else
-            = link_to translation_entry.key, project_translation_entry_path(id: translation_entry), remote: true
+            = link_to translation_entry.key, project_translation_entry_path(id: translation_entry), remote: true, class: 'directory-navigation-link'

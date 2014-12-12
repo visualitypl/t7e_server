@@ -3,6 +3,7 @@ $(document).ready(function(){
     $.fn.editable.defaults.ajaxOptions = {type: "put"}
     $('#username').editable();
     initEditables();
+    initDirectoryNavigationLinks('.directory-navigation-link');
 });
 function initEditables(){
     $('.translation-editable').editable({
