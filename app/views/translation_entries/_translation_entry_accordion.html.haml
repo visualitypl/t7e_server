@@ -4,10 +4,9 @@
       .row.two-button
         .col-xs-11.breadcrumbs-container
           %ol.breadcrumb.marg-none
-            %li
-              %a{:href => "#"} Project
-            %li
-              %a{:href => "#"} errors
+            - @parent_blocks.each do |parent_block|
+              %li
+                %a{:href => "#"}= select_tag '', options_for_select(parent_block[:siblings].map{|s| [s.key, s.id]}), selected: parent_block[:block].id
             %li.active.font-bold= translation_key.key
         .col-xs-1.text-center.bg-grey-light
           %a.text-black.font-bold{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}

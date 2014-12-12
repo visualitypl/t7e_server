@@ -1,6 +1,7 @@
 class TranslationEntriesController < ApplicationController
   before_action :set_project
   before_action :set_translation_entry, only: [:show, :edit, :update, :destroy, :show_key]
+  before_action :set_parent_blocks
 
   respond_to :html, :js
 
@@ -65,5 +66,19 @@ class TranslationEntriesController < ApplicationController
 
     def translation_entry_params
       params.require(:translation_entry).permit(:key, :key_type, :parent_entry_id, :path, :project_id)
+    end
+
+    def set_parent_blocks
+      max_number_of_nesting = 10
+      @parent_blocks = []
+      if @translation_entry.present?
+        block = @translation_entry.block? ? @translation_entry : @translation_entry.parent_entry
+      end
+      while !block.nil? && max_number_of_nesting > 0
+        @parent_blocks << {block: block, siblings: TranslationEntry.where(parent_entry_id: block.parent_entry_id).block}
+        block = block.parent_entry
+        max_number_of_nesting -= 1
+      end
+      @parent_blocks.reverse!
     end
 end
