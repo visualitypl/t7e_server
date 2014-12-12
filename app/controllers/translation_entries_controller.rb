@@ -1,6 +1,8 @@
 class TranslationEntriesController < ApplicationController
   before_action :set_project
   before_action :set_translation_entry, only: [:show, :edit, :update, :destroy, :show_key]
+  before_action :set_translation_keys, only: [:index, :show]
+  before_action :set_translations
   before_action :set_parent_blocks
 
   respond_to :html, :js
@@ -8,18 +10,12 @@ class TranslationEntriesController < ApplicationController
   def index
     #TODO: refactor
     @translation_entries = @project.translation_entries.where('parent_entry_id IS NULL').order(:key_type => :desc).all
-    #for translations
-    @translation_keys = @project.translation_entries
-                            .where(parent_entry: @translation_entry).key.includes(:translations).all
     render 'show'
   end
 
   def show
     #for directory listing
     @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).order(:key_type => :desc).all
-    #for translations
-    @translation_keys = @project.translation_entries
-                            .where(parent_entry: @translation_entry).key.includes(:translations).all
     respond_with(@translation_entry)
   end
 
@@ -66,6 +62,25 @@ class TranslationEntriesController < ApplicationController
 
     def translation_entry_params
       params.require(:translation_entry).permit(:key, :key_type, :parent_entry_id, :path, :project_id)
+    end
+
+    def set_translation_keys
+      #for translations
+      @translation_keys = @project.translation_entries
+                              .where(parent_entry: @translation_entry).key.includes(:translations).all
+    end
+
+    def set_translations
+      @translations = {}
+
+      @translation_keys.try(:each) do |translation_key|
+        missing_languages = @project.project_languages.where.not(language_id: translation_key.translations.select(:language_id))
+        missing_languages.each do |missing_language|
+            translation_key.translations.build(language: missing_language.language, value: '')
+        end
+        translation_key.save!
+        @translations[translation_key.id] = translation_key.translations
+      end
     end
 
     def set_parent_blocks
