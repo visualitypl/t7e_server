@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
 
   has_many :api_keys
 
+  has_many :project_languages
   has_many :translation_entries
 
   def session_api_key

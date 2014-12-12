@@ -1,0 +1,2 @@
+module ProjectLanguagesHelper
+end

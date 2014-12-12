@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Project:
+  = @project_language.project
+%p
+  %b Language:
+  = @project_language.language
+
+= link_to 'Edit', edit_project_language_path(@project_language)
+\|
+= link_to 'Back', project_languages_path
