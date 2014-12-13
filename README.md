@@ -3,6 +3,14 @@
 
 ### Self-hosted translation manager app for Rails
 
+Demo
+----
+
+There is a demo available at [http://t7e-demo.herokuapp.com/](http://t7e-demo.herokuapp.com/)
+
+Email: demo@t7e-demo.herokuapp.com<br/>
+Password: password
+
 
 Deploying:
 ----------
