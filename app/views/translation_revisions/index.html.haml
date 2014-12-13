@@ -1,0 +1,25 @@
+%h1 Listing translation_revisions
+
+%table
+  %thead
+    %tr
+      %th Translation
+      %th User
+      %th Value
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @translation_revisions.each do |translation_revision|
+      %tr
+        %td= translation_revision.translation
+        %td= translation_revision.user
+        %td= translation_revision.value
+        %td= link_to 'Show', translation_revision
+        %td= link_to 'Edit', edit_translation_revision_path(translation_revision)
+        %td= link_to 'Destroy', translation_revision, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Translation revision', new_translation_revision_path

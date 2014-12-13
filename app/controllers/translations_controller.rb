@@ -23,12 +23,16 @@ class TranslationsController < ApplicationController
 
   def create
     @translation = Translation.new(translation_params)
-    @translation.save
+    if @translation.save
+      create_translation_revision
+    end
     respond_with(@translation)
   end
 
   def update
-    @translation.update(translation_params_js)
+    if @translation.update(translation_params_js)
+      create_translation_revision
+    end
     render text: @translation.errors.full_messages.join(',')
   end
 
@@ -52,6 +56,10 @@ class TranslationsController < ApplicationController
 
   def translation_params_js
     params.permit(:translation_entry_id, :value, :language_id)
+  end
+
+  def create_translation_revision
+    @translation.create_translation_revision!(current_user)
   end
 
 end
