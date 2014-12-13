@@ -17,3 +17,8 @@ Language.create!(
     name: 'Turkish',
     iso_code: 'tr'
 )
+#Admin
+User.create!(
+    email: 'admin@example.com',
+    password: '12345678'
+)
