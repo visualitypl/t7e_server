@@ -2,7 +2,7 @@ class TranslationsController < ApplicationController
   before_action :set_translation_entry
   before_action :set_translation, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :js
 
   def index
     @translations = @translation_entry.translations.all
@@ -23,15 +23,17 @@ class TranslationsController < ApplicationController
 
   def create
     @translation = Translation.new(translation_params)
-    @translation.save
+    if @translation.save
+      create_translation_revision
+    end
     respond_with(@translation)
   end
 
   def update
-    @translation.update(translation_params)
-    respond_with @translation do |format|
-      format.html { redirect_to project_translation_entry_translations_path(translation_entry_id: @translation.translation_entry) }
+    if @translation.update(translation_params_js)
+      create_translation_revision
     end
+    render text: @translation.errors.full_messages.join(',')
   end
 
   def destroy
@@ -51,4 +53,13 @@ class TranslationsController < ApplicationController
     def translation_params
       params.require(:translation).permit(:translation_entry_id, :value, :language_id)
     end
+
+  def translation_params_js
+    params.permit(:translation_entry_id, :value, :language_id)
+  end
+
+  def create_translation_revision
+    @translation.create_translation_revision!(current_user)
+  end
+
 end

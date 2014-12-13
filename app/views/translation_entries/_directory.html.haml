@@ -1,31 +1,34 @@
-%h1 Listing translation_entries
+.panel-body.no-border.file-list{ :style => "padding-top: 0" }
+  .row.two-button
+    .col-xs-3.bg-blue.text-center
+      - if @translation_entry && @translation_entry.parent_entry#TODO: fix it
+        = link_to project_translation_entry_path(id: @translation_entry.parent_entry), remote: true, class: 'directory-navigation-link' do
+          %span.glyphicon.glyphicon-chevron-left
+    .col-xs-9
+      .dropdown.grey-dropdown.file-search
+        %button#dropdownMenu1.btn.btn-grey.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :type => "button"}
+          Dropdown
+          %span.caret
+        %ul.dropdown-menu.dropdown-menu-left{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
+          %li{:role => "presentation"}
+            %form{:role => "search"}
+              .form-group
+                %input.form-control{:placeholder => "Search", :type => "text"}/
+          %li{:role => "presentation"}
+            %a{:href => "#", :role => "menuitem", :tabindex => "-1"} File 1
+          %li{:role => "presentation"}
+            %a{:href => "#", :role => "menuitem", :tabindex => "-1"} File 2
+          %li{:role => "presentation"}
+            %a{:href => "#", :role => "menuitem", :tabindex => "-1"} File 3
 
-- if @translation_entry && @translation_entry.parent_entry#TODO: fix it
-  = link_to 'Back', project_translation_entry_path(id: @translation_entry.parent_entry)
-%table
-  %thead
-    %tr
-      %th Key
-      %th Key Type
-      %th Path
-      %th
-      %th
-      %th
-
-  %tbody
+.panel-body.no-padding.no-border.file-list
+  %ul.list-group.no-border.file-list
     - @translation_entries.each do |translation_entry|
-      %tr
-        %td= translation_entry.key
-        %td= translation_entry.key_type
-        %td= translation_entry.path
-        %td
+      %li.list-group-item.no-border{class: cycle('even', 'odd')}
+        %i.fa.text-blue.marg-right-sm{class: translation_entry.block? ? 'fa-folder' : 'fa-file-text-o'}
+        %span
           - if translation_entry.key?
-            = link_to 'Show', project_translation_entry_translations_path(translation_entry_id: translation_entry)
+            = link_to translation_entry.key, show_key_project_translation_entry_path(id: translation_entry), remote: true, class: 'directory-navigation-link'
+            -#= link_to translation_entry.key, project_translation_entry_translations_path(translation_entry_id: translation_entry), remote: true
           - else
-            = link_to 'Show', project_translation_entry_path(id: translation_entry)
-        -#%td= link_to 'Edit', edit_translation_entry_path(translation_entry)
-        -#%td= link_to 'Destroy', translation_entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-      %br
-
-      -#= link_to 'New Translation entry', new_translation_entry_path
+            = link_to translation_entry.key, project_translation_entry_path(id: translation_entry), remote: true, class: 'directory-navigation-link'

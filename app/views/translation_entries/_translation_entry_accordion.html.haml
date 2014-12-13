@@ -1,0 +1,136 @@
+.panel.panel-default.no-border.no-border-radius
+  #headingOne.panel-heading.padder-v{:role => "tab"}
+    %h4.panel-title
+      .row.two-button
+        .col-xs-11.breadcrumbs-container
+          %ol.breadcrumb.marg-none
+            - @parent_blocks.each do |parent_block|
+              %li
+                %a{:href => "#"}= select_tag '', options_for_select(parent_block[:siblings].map{|s| [s.key, s.id]}), selected: parent_block[:block].id
+            %li.active.font-bold= translation_key.key
+        .col-xs-1.text-center.bg-grey-light
+          %a.text-black.font-bold{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
+            ^
+  #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+    - @translations[translation_key.id].each do |translation| #TODO: fix it
+      .panel-body.no-border-radius.translation-container
+        .row
+          .col-xs-2.text-left
+            %i.glyphicon.glyphicon-flag.text-blue.marg-right
+            %h4.font-bold.text-uppercase.inline= translation.language.iso_code
+          .col-xs-8
+            .preview
+              -#%a#username{"data-defaultValue" => 'Click to enter new value', "data-pk" => "1", "data-type" => "textarea", "data-rows" => "4", "data-title" => "Enter username", "data-type" => "text", "data-url" => "/post", :href => "#"}= translation.value
+              = link_to translation.value, '#', class: 'translation-editable', 'data-url' => project_translation_entry_translation_path(translation_entry_id: translation.translation_entry, id: translation)
+            -#.inline-edit
+            -#  = simple_form_for translation, url: project_translation_entry_translation_path(translation_entry_id: translation_key.id, id: translation.id) do |f|
+            -#    = f.error_notification
+            -#    .form-inputs
+            -#      = f.input :value, as: :text, label: false
+            -#    .text-left.marg-top
+            -#      = f.button :submit, class: 'btn btn-success btn-sm text-uppercase'
+            -#      .btn.btn-grey.btn-sm.text-uppercase Cancel
+            -#  .btn.btn-success.btn-sm.text-uppercase Update
+            -#%textarea.form-control{:name => "", :rows => "3"}
+            -#.text-left.marg-top
+            -#  .btn.btn-success.btn-sm.text-uppercase Update
+            -#  .btn.btn-grey.btn-sm.text-uppercase Cancel
+          .col-xs-2.text-right
+            %select.form-control.input-sm
+              %option{:value => "1"} Completed
+              %option{:value => "2"} Incomplete
+              %option{:value => "3"} Revision
+-#.panel.panel-default.no-border.no-border-radius
+    -#.panel-body.no-border.no-border-radius.translation-container
+    -#  .row
+    -#    .col-xs-2.text-left
+    -#      %i.glyphicon.glyphicon-flag.text-blue.marg-right
+    -#      %h4.font-bold.text-uppercase.inline pl
+    -#    .col-xs-8
+    -#      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+    -#    .col-xs-2.text-right
+    -#      %select.form-control.input-sm
+    -#        %option{:value => "1"} Completed
+    -#        %option{:value => "2"} Incomplete
+    -#        %option{:value => "3"} Revision
+-#.panel.panel-default.no-border.no-border-radius
+-#  #headingTwo.panel-heading.padder-v{:role => "tab"}
+-#    %h4.panel-title
+-#      .row.two-button
+-#        .col-xs-11.breadcrumbs-container
+-#          %ol.breadcrumb.marg-none
+-#            %li
+-#              %a{:href => "#"} Project
+-#            %li
+-#              %a{:href => "#"} Library
+-#            %li.active.font-bold Data
+-#        .col-xs-1.text-center.bg-grey-light
+-#          %a.text-black.font-bold{"aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo"}
+-#            ^
+-#  #collapseTwo.panel-collapse.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+-#    .panel-body.no-border-radius.translation-container
+-#      .row
+-#        .col-xs-2.text-left
+-#          %i.glyphicon.glyphicon-flag.text-blue.marg-right
+-#          %h4.font-bold.text-uppercase.inline en
+-#        .col-xs-8
+-#          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+-#        .col-xs-2.text-right
+-#          %select.form-control.input-sm
+-#            %option{:value => "1"} Completed
+-#            %option{:value => "2"} Incomplete
+-#            %option{:value => "3"} Revision
+-#    .panel-body.no-border.no-border-radius.translation-container
+-#      .row
+-#        .col-xs-2.text-left
+-#          %i.glyphicon.glyphicon-flag.text-blue.marg-right
+-#          %h4.font-bold.text-uppercase.inline pl
+-#        .col-xs-8
+-#          %textarea.form-control{:name => "", :rows => "3"}
+-#          .text-left.marg-top
+-#            .btn.btn-success.btn-sm.text-uppercase Accept
+-#            .btn.btn-grey.btn-sm.text-uppercase Reset
+-#        .col-xs-2.text-right
+-#          %select.form-control.input-sm
+-#            %option{:value => "1"} Completed
+-#            %option{:value => "2"} Incomplete
+-#            %option{:value => "3"} Revision
+-#.panel.panel-default.no-border.no-border-radius
+-#  #headingThree.panel-heading.padder-v{:role => "tab"}
+-#    %h4.panel-title
+-#      .row.two-button
+-#        .col-xs-11.breadcrumbs-container
+-#          %ol.breadcrumb.marg-none
+-#            %li
+-#              %a{:href => "#"} Project
+-#            %li
+-#              %a{:href => "#"} body
+-#            %li.active.font-bold errors
+-#        .col-xs-1.text-center.bg-grey-light
+-#          %a.text-black.font-bold{"aria-controls" => "collapseThree", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseThree"}
+-#            ^
+-#  #collapseThree.panel-collapse.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
+-#    .panel-body.no-border-radius.translation-container
+-#      .row
+-#        .col-xs-2.text-left
+-#          %i.glyphicon.glyphicon-flag.text-blue.marg-right
+-#          %h4.font-bold.text-uppercase.inline en
+-#        .col-xs-8
+-#          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+-#        .col-xs-2.text-right
+-#          %select.form-control.input-sm
+-#            %option{:value => "1"} Completed
+-#            %option{:value => "2"} Incomplete
+-#            %option{:value => "3"} Revision
+-#    .panel-body.no-border.no-border-radius.translation-container
+-#      .row
+-#        .col-xs-2.text-left
+-#          %i.glyphicon.glyphicon-flag.text-blue.marg-right
+-#          %h4.font-bold.text-uppercase.inline pl
+-#        .col-xs-8
+-#          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+-#        .col-xs-2.text-right
+-#          %select.form-control.input-sm
+-#            %option{:value => "1"} Completed
+-#            %option{:value => "2"} Incomplete
+-#            %option{:value => "3"} Revision

@@ -1,0 +1,9 @@
+= simple_form_for(@project_language) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :project
+    = f.association :language
+
+  .form-actions
+    = f.button :submit

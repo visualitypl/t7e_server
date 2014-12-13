@@ -1,0 +1,23 @@
+%h1 Listing project_languages
+
+%table
+  %thead
+    %tr
+      %th Project
+      %th Language
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @project_languages.each do |project_language|
+      %tr
+        %td= project_language.project
+        %td= project_language.language
+        %td= link_to 'Show', project_language
+        %td= link_to 'Edit', edit_project_language_path(project_language)
+        %td= link_to 'Destroy', project_language, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Project language', new_project_language_path

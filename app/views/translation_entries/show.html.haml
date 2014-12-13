@@ -1,1 +1,27 @@
-= render partial: 'directory'
+%section.marg-bot-lg.marg-top-lg
+.row
+  .col-lg-3
+    .panel.panel-default.no-border
+      .panel-heading.bg-black.text-center{ :style => "border-bottom: 0;" }
+        .dropdown.grey-dropdown
+          %button#dropdownMenu1.btn.btn-grey.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :type => "button"}
+            Filter by
+            %span.caret
+          %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
+            %li{:role => "presentation"}
+              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Action
+            %li{:role => "presentation"}
+              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
+            %li{:role => "presentation"}
+              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
+            %li{:role => "presentation"}
+              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
+      #translation_entries_directory_list
+        = render partial: 'directory'
+  .col-lg-9
+    .well.text-center.no-border-radius
+      = link_to new_project_translation_entry_path do
+        .btn.btn-primary.padder-v-lg.text-uppercase
+          Add
+    #translation_keys
+      = render partial: 'keys'

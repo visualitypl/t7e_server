@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Translation:
+  = @translation_revision.translation
+%p
+  %b User:
+  = @translation_revision.user
+%p
+  %b Value:
+  = @translation_revision.value
+
+= link_to 'Edit', edit_translation_revision_path(@translation_revision)
+\|
+= link_to 'Back', translation_revisions_path

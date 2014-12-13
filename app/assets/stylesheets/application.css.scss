@@ -11,10 +11,15 @@
  * file per style scope.
  *
  *= require style
+ *= require margins
+ *= require font-awesome
  *= require_self
  */
 
 @import "bourbon";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "bootstrap-editable";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext);

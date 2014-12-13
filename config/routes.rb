@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
 
+  resources :translation_revisions
+
+  resources :project_languages
+
   resources :languages
 
   resources :projects do
     resources :translation_entries do
+      member do
+        get :show_key
+      end
       resources :translations
     end
   end

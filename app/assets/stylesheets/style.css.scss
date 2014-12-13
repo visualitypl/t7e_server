@@ -2,3 +2,62 @@
 
 html, body { font-size: 100%; font-family: 'Open Sans'!important }
 
+// commons
+
+$color-blue: #3498DB;
+
+.bg-grey { background-color: #424242; }
+.bg-grey-light {background-color: lighten( #424242, 50%)}
+.bg-black { background-color: #363636 !important; }
+.bg-blue { background-color: $color-blue !important; color: #fff;}
+.no-border-radius { border-radius: 0 !important; }
+.padder-v-lg { padding-right: 40px !important; padding-left: 40px !important;}
+.padder-v {padding: 0 15px !important;}
+.no-padding-panel {margin: -15px;}
+.no-padding {padding: 0 !important;}
+.no-border {border: none !important;}
+.font-bold  {font-weight: bold;}
+.inline {display: inline-block;}
+.text-blue {color: $color-blue;}
+.text-black {color: #000 !important;}
+
+// buttons
+
+.btn-grey { @extend .btn-default; border-radius: 0 !important; background-color: lighten( #363636, 20%); color: #fff !important; position: relative;
+  .caret {position: absolute; right: 10px; top: 50%; color: $color-blue;}
+}
+
+.btn-grey.dropdown-toggle {padding-right: 100px; width: 100%; text-align: left; }
+.grey-dropdown > .dropdown-menu {width: 100%; background-color: #363636;
+  a {color: #fff;}
+}
+
+.two-button {display: table;
+  [class^="col-"] {display: table-cell; float: none; padding: 0}
+}
+
+
+// File lisT
+
+.file-list { background-color: #EFEFEF;
+  .even {background-color: #EFEFEF;}
+  .odd {background-color: lighten(#EFEFEF, 10%)}
+}
+
+.file-search {
+  .dropdown-menu {left: -34%; width: 134%}
+  .form-group {padding: 10px}
+}
+
+// translation list
+
+#accordion {
+  .breadcrumbs-container {padding: 10px 0;}
+  .translation-container {
+    .row {display: table}
+    [class^="col-"] {display: table-cell; float: none; vertical-align: middle;}
+    .col-xs-8 {font-size: 13px;}
+  }
+  .translation-container:nth-child(1) {border-bottom: 1px solid #e3e3e3}
+}
+
