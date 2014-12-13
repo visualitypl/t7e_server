@@ -62,12 +62,12 @@ module Action
     def save_pair(parent, myHash)
       myHash.each do |key, value|
         if value.is_a?(Hash)
-          path = parent.nil? ? "#{key}" : "#{parent.path}.#{key}"
-          parent = Pair.new(parent, key, nil,path, :block)
-          @pairs << parent
-          save_pair(parent, value)
+          path = parent.nil? ? '' : "#{parent.path}.#{key}"
+          block = Pair.new(parent, key, nil,path, :block)
+          @pairs << block
+          save_pair(block, value)
         else
-          path = parent.nil? ? "#{key}" : "#{parent.path}.#{key}"
+          path = parent.nil? ? '' : "#{parent.path}.#{key}"
           @pairs << Pair.new(parent, key, value, path)
         end
       end
