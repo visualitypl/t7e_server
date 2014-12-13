@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :translation_revisions
+
   resources :project_languages
 
   resources :languages

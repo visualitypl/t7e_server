@@ -1,0 +1,10 @@
+= simple_form_for(@translation_revision) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :translation
+    = f.association :user
+    = f.input :value
+
+  .form-actions
+    = f.button :submit

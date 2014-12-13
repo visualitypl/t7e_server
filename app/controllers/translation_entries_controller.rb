@@ -79,7 +79,8 @@ class TranslationEntriesController < ApplicationController
             translation_key.translations.build(language: missing_language.language, value: '')
         end
         translation_key.save!
-        @translations[translation_key.id] = translation_key.translations
+        @translations[translation_key.id] = translation_key.translations.where(language_id: @project.project_languages)
+        #TODO: order by project language position
       end
     end
 
