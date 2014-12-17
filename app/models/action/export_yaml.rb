@@ -10,7 +10,7 @@ module Action
 
     def get_yaml
       root_key = @project.translation_entries.where('parent_entry_id IS NULL').first!
-      hash = directory_hash(root_key, root_key.key)
+      hash = {@language.iso_code => directory_hash(root_key, root_key.key)}
       header + hash.to_yaml
     end
 
@@ -28,14 +28,13 @@ module Action
 
     private
     def directory_hash(path, name=nil)
-      data = {(name || path) => (children = [])}
+      data = (children = {})
       TranslationEntry.where(parent_entry: path).each do |entry|
         if entry.block?
-          children << directory_hash(entry, entry.key)
+          children[entry.key] = directory_hash(entry, entry.key)
         else
-          children << {
-              entry.key => (Translation.where(translation_entry: entry, language: @language).first.try(:value) ||'')
-          }
+          value = (Translation.where(translation_entry: entry, language: @language).first.try(:value) ||'')
+          children[entry.key] = value
         end
       end
       return data
