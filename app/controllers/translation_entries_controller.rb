@@ -1,7 +1,7 @@
 class TranslationEntriesController < ApplicationController
   before_action :set_project
   before_action :set_translation_entry, only: [:show, :edit, :update, :destroy, :show_key]
-  before_action :set_translation_keys, only: [:index, :show]
+  before_action :set_translation_keys, only: [:index, :show, :show_key]
   before_action :set_translations
   before_action :set_parent_blocks
 
@@ -9,7 +9,8 @@ class TranslationEntriesController < ApplicationController
 
   def index
     #TODO: refactor
-    @translation_entries = @project.translation_entries.where('parent_entry_id IS NULL').order(:key_type => :desc).all
+    root_entry = @project.translation_entries.where(parent_entry_id: nil).first!
+    @translation_entries = @project.translation_entries.where(parent_entry_id: root_entry).order(:key_type => :desc, key: :asc).all
     render 'show'
   end
 
@@ -20,7 +21,6 @@ class TranslationEntriesController < ApplicationController
   end
 
   def show_key
-    @translation_keys = [@translation_entry]
     @translation_entry = @translation_entry.parent_entry
     @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).order(:key_type => :desc).all
 
@@ -66,8 +66,12 @@ class TranslationEntriesController < ApplicationController
 
     def set_translation_keys
       #for translations
-      @translation_keys = @project.translation_entries
-                              .where(parent_entry: @translation_entry).key.includes(:translations).all
+      if params[:action].eql?('show_key')
+        @translation_keys = [@translation_entry]
+      else
+        @translation_keys = @project.translation_entries
+                                .where(parent_entry: @translation_entry).key.includes(:translations).all
+      end
     end
 
     def set_translations
@@ -79,7 +83,7 @@ class TranslationEntriesController < ApplicationController
             translation_key.translations.build(language: missing_language.language, value: '')
         end
         translation_key.save!
-        @translations[translation_key.id] = translation_key.translations.where(language_id: @project.project_languages)
+        @translations[translation_key.id] = translation_key.translations.where(language_id: @project.project_languages.pluck(:language_id))
         #TODO: order by project language position
       end
     end
