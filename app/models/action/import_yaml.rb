@@ -40,6 +40,7 @@ module Action
   #finding parent #TODO: refactor
           if pair.parent
             parent = TranslationEntry.where(path: pair.parent.path, project: @project).first
+            #TODO: will be refactored
             unless parent
               parent = TranslationEntry.create!(path: pair.parent.path, key_type: 'block', project: @project)
             end

@@ -1,12 +1,9 @@
-= simple_form_for(@translation_entry) do |f|
+= simple_form_for [@project, @translation_entry], remote: true do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :key
-    = f.input :key_type
-    = f.association :parent_entry
-    = f.input :path
-    = f.association :project
+    = f.input :key_type, as: :hidden
+    = f.input :path, as: :string
 
   .form-actions
     = f.button :submit

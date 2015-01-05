@@ -28,7 +28,8 @@ class TranslationEntriesController < ApplicationController
   end
 
   def new
-    @translation_entry = TranslationEntry.new
+    path = (TranslationEntry.find(params[:parent_entry_id]).path + '.') if params[:parent_entry_id]
+    @translation_entry = TranslationEntry.new(path: path)
     respond_with(@translation_entry)
   end
 
@@ -36,8 +37,10 @@ class TranslationEntriesController < ApplicationController
   end
 
   def create
-    @translation_entry = TranslationEntry.new(translation_entry_params)
-    @translation_entry.save
+    action = Action::CreateTranslationEntry
+                 .new(@project, translation_entry_params['path'], translation_entry_params['key_type'])
+    action.execute
+    #TODO: action errors
     respond_with(@translation_entry)
   end
 
@@ -61,7 +64,7 @@ class TranslationEntriesController < ApplicationController
     end
 
     def translation_entry_params
-      params.require(:translation_entry).permit(:key, :key_type, :parent_entry_id, :path, :project_id)
+      params.require(:translation_entry).permit(:path, :key_type)
     end
 
     def set_translation_keys
