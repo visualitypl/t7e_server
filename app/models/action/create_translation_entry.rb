@@ -5,9 +5,14 @@ module Action
       @project = project
       @path = path
       @key_type = key_type
+
+      raise 'Invalid key type' unless @key_type.in?([:key, :block, 'key', 'block'])
     end
 
     def execute
+
+      validate_path
+
       #first try to find it
       translation_entry = @project.translation_entries.find_by_path(@path)
 
@@ -31,6 +36,12 @@ module Action
     end
 
     private
+
+    def validate_path
+      @path.split('.').each do |element|
+        raise 'Invalid path' if element.blank?
+      end
+    end
 
     #TODO: could be done recursively
     #find the parent translation_entry, if one of them not found in the chain, then create

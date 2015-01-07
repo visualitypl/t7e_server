@@ -1,9 +1,9 @@
 .panel-body.no-border.file-list{ :style => "padding-top: 0" }
   .row.two-button
     .col-xs-3.bg-blue.text-center
-      - if @translation_entry && @translation_entry.parent_entry#TODO: fix it
-        = link_to project_translation_entry_path(id: @translation_entry.parent_entry), remote: true, class: 'directory-navigation-link' do
-          %span.glyphicon.glyphicon-chevron-left
+      - if @translation_entry
+        = link_to '', @translation_entry.parent_entry ? project_translation_entry_path(id: @translation_entry.parent_entry) : project_translation_entries_path,
+           remote: true, class: 'directory-navigation-link glyphicon glyphicon-chevron-left'
     .col-xs-9
       .dropdown.grey-dropdown.file-search
         %button#dropdownMenu1.btn.btn-grey.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :type => "button"}

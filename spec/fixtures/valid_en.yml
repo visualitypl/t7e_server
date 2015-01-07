@@ -1,0 +1,23 @@
+en:
+  date:
+    formats:
+      default: "%Y-%b-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+  simple_form:
+    labels:
+      user:
+        username:          'Username'
+        email:             'Email'
+        password:          'Password'
+      reservation:
+        date_range: 'Dates'
+        number_of_people:  'Number of people'
+        price: 'Price'
+
+
+
+  main_menu:
+    home: "Home"
+    blog: "Blog"
+    my_reservation: "My reservation"
