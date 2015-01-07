@@ -20,8 +20,7 @@
         = render partial: 'directory'
   .col-lg-9
     .well.text-center.no-border-radius
-      = link_to new_project_translation_entry_path do
-        .btn.btn-primary.padder-v-lg.text-uppercase
-          Add
+      #add_button
+        = render partial: 'add'
     #translation_keys
       = render partial: 'keys'

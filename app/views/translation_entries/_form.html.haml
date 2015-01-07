@@ -1,9 +1,12 @@
 = simple_form_for [@project, @translation_entry], remote: true do |f|
   = f.error_notification
+  = f.input :key_type, as: :hidden
 
   .form-inputs
-    = f.input :key_type, as: :hidden
-    = f.input :path, as: :string
+    = f.input :path, as: :string, input_html: { class: 'form-control' }
 
+  %br
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: 'pull-right btn btn-primary'
+  %br
+  %br

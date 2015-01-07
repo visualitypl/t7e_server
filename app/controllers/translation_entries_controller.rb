@@ -28,7 +28,7 @@ class TranslationEntriesController < ApplicationController
 
   def new
     path = (TranslationEntry.find(params[:parent_entry_id]).path + '.') if params[:parent_entry_id]
-    @translation_entry = TranslationEntry.new(path: path)
+    @translation_entry = TranslationEntry.new(path: path, key_type: params[:key_type])
     respond_with(@translation_entry)
   end
 
@@ -38,7 +38,7 @@ class TranslationEntriesController < ApplicationController
   def create
     action = Action::CreateTranslationEntry
                  .new(@project, translation_entry_params['path'], translation_entry_params['key_type'])
-    action.execute
+    @translation_entry = action.execute
     #TODO: action errors
     respond_with(@translation_entry)
   end
