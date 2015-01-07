@@ -1,7 +1,7 @@
 class TranslationEntriesController < ApplicationController
   before_action :set_project
   before_action :set_translation_entry, only: [:show, :edit, :update, :destroy, :show_key]
-  before_action :set_translation_keys, only: [:index, :show]
+  before_action :set_translation_keys, only: [:index, :show, :show_key]
   before_action :set_translations
   before_action :set_parent_blocks
 
@@ -20,7 +20,6 @@ class TranslationEntriesController < ApplicationController
   end
 
   def show_key
-    @translation_keys = [@translation_entry]
     @translation_entry = @translation_entry.parent_entry
     @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).order(:key_type => :desc).all
 
@@ -69,8 +68,13 @@ class TranslationEntriesController < ApplicationController
 
     def set_translation_keys
       #for translations
-      @translation_keys = @project.translation_entries
-                              .where(parent_entry: @translation_entry).key.includes(:translations).all
+      if params[:action] == 'show_key'
+        @translation_keys = [@translation_entry]
+      else
+        @translation_keys = @project.translation_entries
+                                .where(parent_entry: @translation_entry).key.includes(:translations).all
+      end
+
     end
 
     def set_translations
