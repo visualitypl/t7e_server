@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   resources :languages
 
+  devise_for :users
+  resources :users
+
   resources :projects do
     resources :translation_entries do
       member do
@@ -14,7 +17,6 @@ Rails.application.routes.draw do
       resources :translations
     end
   end
-  devise_for :users
 
   root 'home#index'
 

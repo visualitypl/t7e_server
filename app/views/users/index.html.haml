@@ -1,0 +1,15 @@
+%h1 Users
+
+= link_to 'Invite user', new_user_path
+
+%table
+  %thead
+    %tr
+      %th Email
+      %th Role
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td= user.user_type.text

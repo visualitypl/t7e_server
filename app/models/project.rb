@@ -6,6 +6,8 @@ class Project < ActiveRecord::Base
   has_many :project_languages
   has_many :translation_entries
 
+  has_and_belongs_to_many :users
+
   def session_api_key
     api_keys.active.first_or_create
   end

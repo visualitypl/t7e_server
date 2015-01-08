@@ -1,0 +1,13 @@
+Invite User
+
+= simple_form_for(@user) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :email
+    = f.association :projects
+    = f.input :user_type, as: :select, collection: UserType.select_options, include_blank: false
+
+  .form-actions
+    = f.button :submit
