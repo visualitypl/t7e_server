@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.save
     respond_with @translation do |format|
-      format.html { redirect_to project_path(@project) }
+      format.html { redirect_to root_path }
     end
   end
   private
