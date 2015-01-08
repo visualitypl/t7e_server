@@ -14,7 +14,7 @@ module Action
       validate_path
 
       #first try to find it
-      translation_entry = @project.translation_entries.find_by_path(@path)
+      translation_entry = @project.translation_entries.find_by_path(@path.chomp('.'))
 
       #if not found, extract the key
       if !translation_entry
