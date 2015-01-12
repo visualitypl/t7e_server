@@ -11,8 +11,8 @@
         .container-fluid
           / Brand and toggle get grouped for better mobile display
           .navbar-header
-            %a.navbar-brand{:href => "#"}
-              %img{:alt => "Brand", :src => "..."}/
+            %a.navbar-brand{:href => root_path}
+              %img{:alt => "Brand", :src => ""}/
             %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
               %span.sr-only Toggle navigation
               %span.icon-bar
@@ -26,11 +26,11 @@
                   Projects
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}
-                  - Project.all.each do |project|
+                  - @current_user_projects.each do |project|
                     %li
                       = link_to project.name, project_translation_entries_path(project)
-                %li
-                  %a{:href => "#"} Link
+                - if can? :read, User
+                  %li= link_to 'Users', project_users_path
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}

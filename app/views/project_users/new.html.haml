@@ -1,0 +1,13 @@
+Invite User
+
+= simple_form_for @user, url: project_users_path do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :email
+    = f.association :projects
+    = f.input :user_type, as: :select, collection: ProjectUser.user_types.keys.to_a.map {|ut| [t("user_type.#{ut}"), ut]}, include_blank: false
+
+  .form-actions
+    = f.button :submit
