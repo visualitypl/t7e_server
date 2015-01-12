@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
+  resources :project_users
+
   resources :projects do
     resources :translation_entries do
       member do
