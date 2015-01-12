@@ -22,7 +22,6 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'cancancan'
-gem 'classy_enum'
 gem 'devise_invitable'
 
 group :development, :test do

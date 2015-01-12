@@ -7,7 +7,7 @@ Invite User
     = f.input :name
     = f.input :email
     = f.association :projects
-    = f.input :user_type, as: :select, collection: UserType.select_options, include_blank: false
+    = f.input :user_type, as: :select, collection: ProjectUser.user_types.keys.to_a.map {|ut| [t("user_type.#{ut}"), ut]}, include_blank: false
 
   .form-actions
     = f.button :submit

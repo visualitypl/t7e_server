@@ -28,9 +28,8 @@ en:
       other_messages:
         message_1: 'Message 1'
 
-  classy_enum:
-    user_type:
-      translator: 'Translator'
-      developer: 'Developer'
-      project_owner: 'Project owner'
-      admin: 'Admin'
+  user_type:
+    translator: 'Translator'
+    developer: 'Developer'
+    project_owner: 'Project owner'
+    admin: 'Admin'
