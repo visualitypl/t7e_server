@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
-  resources :project_users
+  resources :project_users do
+    member do
+      post :create_project_user
+    end
+  end
 
   resources :projects do
     resources :translation_entries do

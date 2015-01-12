@@ -1,0 +1,35 @@
+Edit User
+
+Name:
+= @user.name
+%br
+Email:
+= @user.email
+%br
+%table
+  %thead
+    %th Project name
+    %th Role
+    %th Actions
+  %tbody
+    - @user.project_users.each do |project_user|
+      %tr
+        %td= project_user.project.name
+        %td= t("user_type.#{project_user.user_type}")
+        %td= link_to 'Delete', '#'
+
+
+= simple_form_for ProjectUser.new(user: @user), url: create_project_user_project_user_path do |f|
+  = f.error_notification
+  = f.input :project_id, as: :select, collection: Project.all.to_a.map {|p| [p.name, p.id]}, include_blank: false
+  = f.input :user_type, as: :select, collection: ProjectUser.user_types.keys.to_a.map {|ut| [t("user_type.#{ut}"), ut]}, include_blank: false
+  = f.button :submit
+-#
+-#  .form-inputs
+-#    = f.input :name
+-#    = f.input :email
+-#    = f.association :projects
+-#    = f.input :user_type, as: :select, collection: ProjectUser.user_types.keys.to_a.map {|ut| [t("user_type.#{ut}"), ut]}, include_blank: false
+-#
+-#  .form-actions
+-#    = f.button :submit

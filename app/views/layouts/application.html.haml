@@ -26,7 +26,7 @@
                   Projects
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}
-                  - Project.all.each do |project|
+                  - @current_user_projects.each do |project|
                     %li
                       = link_to project.name, project_translation_entries_path(project)
                 - if can? :read, User

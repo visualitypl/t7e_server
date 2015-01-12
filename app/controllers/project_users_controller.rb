@@ -1,4 +1,5 @@
 class ProjectUsersController < ApplicationController
+  before_action :load_project_user, only: [:show, :update, :create_project_user]
   # TODO: forms would be separated
   def index
     @project_users = ProjectUser.includes(:user).all.uniq
@@ -6,6 +7,10 @@ class ProjectUsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def show
+
   end
 
   def create
@@ -28,8 +33,24 @@ class ProjectUsersController < ApplicationController
     end
   end
 
+  def create_project_user
+    @project_user = ProjectUser.new(permitted_params_for_project_user.merge(user: @project_user.user))
+    if @project_user.save
+      redirect_to project_user_path(@project_user)
+    else
+      render 'show'
+    end
+  end
+
   private
+  def load_project_user
+    @project_user = ProjectUser.find(params[:id])
+    @user = @project_user.user
+  end
   def permitted_params
     params.require(:user).permit(:name, :email)
+  end
+  def permitted_params_for_project_user
+    params.require(:project_user).permit(:project_id, :user_type)
   end
 end
