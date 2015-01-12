@@ -1,7 +1,7 @@
 .row
   .col-lg-12
     %h1 Projects
-- @projects.in_groups_of(3, false).each do |group|
+- @current_user_projects.in_groups_of(3, false).each do |group|
   .row
     - group.each do |project|
       .col-lg-4

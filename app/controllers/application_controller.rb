@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   before_action :set_projects
 
   def set_projects
-    @current_user_projects = current_user.projects
+    if current_user && current_user.id == 1
+      @current_user_projects = Project.all
+    else
+      @current_user_projects = current_user.present? ? current_user.projects : []
+    end
   end
 end
