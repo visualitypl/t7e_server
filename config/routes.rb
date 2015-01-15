@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   resources :translation_revisions
 
-  resources :project_languages
-
   resources :languages
 
   devise_for :users
@@ -16,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
+    resources :project_languages
     resources :translation_entries do
       member do
         get :show_key
