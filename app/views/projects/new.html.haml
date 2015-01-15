@@ -1,3 +1,5 @@
 = simple_form_for @project do |f|
-  =f.input :name
-  =f.submit
+  = f.input :name
+  = f.select :default_language_id, options_for_select(Language.all.map{|l| [l.name, l.id]})
+  %br
+  = f.submit
