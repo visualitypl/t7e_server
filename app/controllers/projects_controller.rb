@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.project_languages.build(language_id: @project.default_language_id)
     @project.save
     respond_with @translation do |format|
       format.html { redirect_to root_path }
@@ -26,6 +27,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name)
+    params.require(:project).permit(:name, :default_language_id)
   end
 end

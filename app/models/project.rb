@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   after_create :session_api_key
 
+  belongs_to :default_language, class_name: Language
   has_many :api_keys
 
   has_many :project_languages

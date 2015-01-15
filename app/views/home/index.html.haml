@@ -8,7 +8,7 @@
         .panel.panel-default
           .panel-heading
           .panel-body
-            = link_to project.name, project_translation_entries_path(project)
+            = render partial: 'project', locals: {project: project}
           .panel-footer
 .row
   =link_to 'New Project', new_project_path
