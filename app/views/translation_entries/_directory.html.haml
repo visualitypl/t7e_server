@@ -32,3 +32,4 @@
             -#= link_to translation_entry.key, project_translation_entry_translations_path(translation_entry_id: translation_entry), remote: true
           - else
             = link_to translation_entry.key, project_translation_entry_path(id: translation_entry), remote: true, class: 'directory-navigation-link'
+= render partial: 'add_block'

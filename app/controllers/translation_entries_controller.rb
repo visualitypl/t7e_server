@@ -9,8 +9,10 @@ class TranslationEntriesController < ApplicationController
 
   def index
     #TODO: refactor
-    root_entry = @project.translation_entries.where(parent_entry_id: nil).first!
-    @translation_entries = @project.translation_entries.where(parent_entry_id: root_entry).order(:key_type => :desc, key: :asc).all
+    # root_entry = @project.translation_entries.where(parent_entry_id: nil).first!
+    @translation_entries = @project.translation_entries
+                               .where(parent_entry_id: nil)
+                               .order(:key_type => :desc, key: :asc).all
     render 'show'
   end
 

@@ -1,1 +1,5 @@
+<% if @translation_entry.block? %>
+window.location = '<%= project_translation_entry_path(id: @translation_entry)%>';
+<% else %>
 window.location = '<%= show_key_project_translation_entry_path(id: @translation_entry)%>';
+<% end %>
