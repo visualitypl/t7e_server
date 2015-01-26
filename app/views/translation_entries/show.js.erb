@@ -1,5 +1,6 @@
 //TODO: loading
 $('#translation_entries_directory_list').html("<%= j render("/translation_entries/directory")%>");
+$('#add_button').html("<%= j render("/translation_entries/add")%>");
 $('#translation_keys').html("<%= j render("/translation_entries/keys")%>");
 initEditables();
 initDirectoryNavigationLinks('.directory-navigation-link');

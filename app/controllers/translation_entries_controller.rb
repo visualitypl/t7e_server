@@ -1,7 +1,7 @@
 class TranslationEntriesController < ApplicationController
   before_action :set_project
   before_action :set_translation_entry, only: [:show, :edit, :update, :destroy, :show_key]
-  before_action :set_translation_keys, only: [:index, :show]
+  before_action :set_translation_keys, only: [:index, :show, :show_key]
   before_action :set_translations
   before_action :set_parent_blocks
 
@@ -9,7 +9,10 @@ class TranslationEntriesController < ApplicationController
 
   def index
     #TODO: refactor
-    @translation_entries = @project.translation_entries.where('parent_entry_id IS NULL').order(:key_type => :desc).all
+    # root_entry = @project.translation_entries.where(parent_entry_id: nil).first!
+    @translation_entries = @project.translation_entries
+                               .where(parent_entry_id: nil)
+                               .order(:key_type => :desc, key: :asc).all
     render 'show'
   end
 
@@ -20,7 +23,6 @@ class TranslationEntriesController < ApplicationController
   end
 
   def show_key
-    @translation_keys = [@translation_entry]
     @translation_entry = @translation_entry.parent_entry
     @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).order(:key_type => :desc).all
 
@@ -28,7 +30,8 @@ class TranslationEntriesController < ApplicationController
   end
 
   def new
-    @translation_entry = TranslationEntry.new
+    path = (TranslationEntry.find(params[:parent_entry_id]).path + '.') if params[:parent_entry_id]
+    @translation_entry = TranslationEntry.new(path: path, key_type: params[:key_type])
     respond_with(@translation_entry)
   end
 
@@ -36,8 +39,10 @@ class TranslationEntriesController < ApplicationController
   end
 
   def create
-    @translation_entry = TranslationEntry.new(translation_entry_params)
-    @translation_entry.save
+    action = Action::CreateTranslationEntry
+                 .new(@project, translation_entry_params['path'], translation_entry_params['key_type'])
+    @translation_entry = action.execute
+    #TODO: action errors
     respond_with(@translation_entry)
   end
 
@@ -61,13 +66,18 @@ class TranslationEntriesController < ApplicationController
     end
 
     def translation_entry_params
-      params.require(:translation_entry).permit(:key, :key_type, :parent_entry_id, :path, :project_id)
+      params.require(:translation_entry).permit(:path, :key_type)
     end
 
     def set_translation_keys
       #for translations
-      @translation_keys = @project.translation_entries
-                              .where(parent_entry: @translation_entry).key.includes(:translations).all
+      if params[:action] == 'show_key'
+        @translation_keys = [@translation_entry]
+      else
+        @translation_keys = @project.translation_entries
+                                .where(parent_entry: @translation_entry).key.includes(:translations).all
+      end
+
     end
 
     def set_translations
@@ -79,7 +89,7 @@ class TranslationEntriesController < ApplicationController
             translation_key.translations.build(language: missing_language.language, value: '')
         end
         translation_key.save!
-        @translations[translation_key.id] = translation_key.translations.where(language_id: @project.project_languages)
+        @translations[translation_key.id] = translation_key.translations.where(language_id: @project.project_languages.pluck(:language_id))
         #TODO: order by project language position
       end
     end

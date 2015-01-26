@@ -1,0 +1,11 @@
+= link_to project.name, project_path(project)
+.row
+  .col-lg-4
+    = link_to '#' do
+      = "#{project.users.count} users"
+  .col-lg-4
+    = link_to project_project_languages_path(project) do
+      = "#{project.project_languages.count} languages"
+  .col-lg-4
+    = link_to project_translation_entries_path(project) do
+      = "#{project.translation_entries.count} translation entries"

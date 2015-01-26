@@ -1,10 +1,10 @@
 class ProjectLanguagesController < ApplicationController
+  before_action :set_project
   before_action :set_project_language, only: [:show, :edit, :update, :destroy]
-
   respond_to :html
 
   def index
-    @project_languages = ProjectLanguage.all
+    @project_languages = @project.project_languages.all
     respond_with(@project_languages)
   end
 
@@ -13,17 +13,17 @@ class ProjectLanguagesController < ApplicationController
   end
 
   def new
-    @project_language = ProjectLanguage.new
+    @project_language = @project.project_languages.new
     respond_with(@project_language)
-  end
-
-  def edit
   end
 
   def create
-    @project_language = ProjectLanguage.new(project_language_params)
-    @project_language.save
-    respond_with(@project_language)
+    @project_language = ProjectLanguage.new(project_language_params.merge(project: @project))
+    if @project_language.save
+      redirect_to project_project_languages_path(@project)
+    else
+      respond_with(@project, @project_language)
+    end
   end
 
   def update
@@ -33,15 +33,19 @@ class ProjectLanguagesController < ApplicationController
 
   def destroy
     @project_language.destroy
-    respond_with(@project_language)
+    respond_with(@project, @project_language)
   end
 
   private
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_project_language
       @project_language = ProjectLanguage.find(params[:id])
     end
 
     def project_language_params
-      params.require(:project_language).permit(:project_id, :language_id)
+      params.require(:project_language).permit(:language_id)
     end
 end

@@ -1,13 +1,14 @@
 .row
   .col-lg-12
     %h1 Projects
-.row
-  .col-lg-4
-    .panel.panel-default
-      .panel-heading
-      .panel-body
-        - @projects.each do |project|
-          = link_to project.name, project_translation_entries_path(project)
-      .panel-footer
+- @current_user_projects.in_groups_of(3, false).each do |group|
+  .row
+    - group.each do |project|
+      .col-lg-4
+        .panel.panel-default
+          .panel-heading
+          .panel-body
+            = render partial: 'project', locals: {project: project}
+          .panel-footer
 .row
   =link_to 'New Project', new_project_path

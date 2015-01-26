@@ -2,11 +2,19 @@ Rails.application.routes.draw do
 
   resources :translation_revisions
 
-  resources :project_languages
-
   resources :languages
 
+  devise_for :users
+  resources :users
+
+  resources :project_users do
+    member do
+      post :create_project_user
+    end
+  end
+
   resources :projects do
+    resources :project_languages
     resources :translation_entries do
       member do
         get :show_key
@@ -14,7 +22,6 @@ Rails.application.routes.draw do
       resources :translations
     end
   end
-  devise_for :users
 
   root 'home#index'
 

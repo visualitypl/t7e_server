@@ -1,9 +1,9 @@
-= simple_form_for(@project_language) do |f|
+= simple_form_for([:project, @project_language]) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.association :project
-    = f.association :language
+    = "Project: #{@project.name}"
+    = f.select :language_id, options_for_select(Language.where.not(id: @project.project_languages.select(:language_id)).map{|l| [l.name, l.id]})
 
   .form-actions
     = f.button :submit
