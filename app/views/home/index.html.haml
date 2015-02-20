@@ -1,14 +1,19 @@
 .row
   .col-lg-12
-    %h1 Projects
+    %h1.text-center
+      Projects
+      =link_to new_project_path, remote: true, data: {toggle: 'modal', target: '#myModal'}, :class => 'btn btn-default' do
+        Add new
+        %i.fa.fa-plus
 - @current_user_projects.in_groups_of(3, false).each do |group|
   .row
     - group.each do |project|
       .col-lg-4
         .panel.panel-default
-          .panel-heading
           .panel-body
-            = render partial: 'project', locals: {project: project}
+            %h3.text-center
+              = link_to project.name, project_path(project)
           .panel-footer
-.row
-  =link_to 'New Project', new_project_path
+            = render partial: 'project', locals: {project: project}
+
+

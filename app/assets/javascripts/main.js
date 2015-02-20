@@ -4,6 +4,7 @@ $(document).ready(function(){
     $('#username').editable();
     initEditables();
     initDirectoryNavigationLinks('.directory-navigation-link');
+    $('[data-toggle="tooltip"]').tooltip();
 });
 function initEditables(){
     $('.translation-editable').editable({

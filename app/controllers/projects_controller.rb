@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show]
 
-  respond_to :html
+  respond_to :html, :js
 
 
   def show

@@ -1,11 +1,13 @@
-= link_to project.name, project_path(project)
 .row
-  .col-lg-4
-    = link_to '#' do
-      = "#{project.users.count} users"
-  .col-lg-4
-    = link_to project_project_languages_path(project) do
-      = "#{project.project_languages.count} languages"
-  .col-lg-4
-    = link_to project_translation_entries_path(project) do
-      = "#{project.translation_entries.count} translation entries"
+  .col-lg-4.text-center
+    = link_to '#', :data => {:toggle => 'tooltip', :'original-title' => 'Users'} do
+      %i.fa.fa-users
+      = "#{project.users.count}"
+  .col-lg-4.text-center
+    = link_to project_project_languages_path(project), :data => {:toggle => 'tooltip', :'original-title' => 'Languages'} do
+      %i.fa.fa-language
+      = "#{project.project_languages.count}"
+  .col-lg-4.text-center
+    = link_to project_translation_entries_path(project), :data => {:toggle => 'tooltip', :'original-title' => 'Translation entries'} do
+      %i.fa.fa-file-text-o
+      = "#{project.translation_entries.count}"
