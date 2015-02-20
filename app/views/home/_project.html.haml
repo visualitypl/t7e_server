@@ -1,13 +1,13 @@
 .row
-  .col-lg-4.text-center
+  .col-xs-4.text-center.bg-primary
     = link_to '#', :data => {:toggle => 'tooltip', :'original-title' => 'Users'} do
-      %i.fa.fa-users
+      Users
       = "#{project.users.count}"
-  .col-lg-4.text-center
-    = link_to project_project_languages_path(project), :data => {:toggle => 'tooltip', :'original-title' => 'Languages'} do
-      %i.fa.fa-language
+  .col-xs-4.text-center.bg-danger
+    = link_to project_project_languages_path(project), :remote => true, :data => {toggle: 'modal', target: '#myModal'} do
+      Languages
       = "#{project.project_languages.count}"
-  .col-lg-4.text-center
+  .col-xs-4.text-center.bg-success
     = link_to project_translation_entries_path(project), :data => {:toggle => 'tooltip', :'original-title' => 'Translation entries'} do
-      %i.fa.fa-file-text-o
+      Translations
       = "#{project.translation_entries.count}"

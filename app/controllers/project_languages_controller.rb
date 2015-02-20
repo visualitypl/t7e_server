@@ -1,7 +1,7 @@
 class ProjectLanguagesController < ApplicationController
   before_action :set_project
   before_action :set_project_language, only: [:show, :edit, :update, :destroy]
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @project_languages = @project.project_languages.all
@@ -33,7 +33,10 @@ class ProjectLanguagesController < ApplicationController
 
   def destroy
     @project_language.destroy
-    respond_with(@project, @project_language)
+    respond_to do |format|
+      format.js {respond_with(@project, @project_language)}
+      format.html { respond_with(@project, @project_language)}
+    end
   end
 
   private
