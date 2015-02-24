@@ -1,0 +1,5 @@
+$('#myModal .modal-title').html('Project languages');
+$('#myModal .modal-body').html("<%= j render("/project_languages/list")%>");
+$('.remove-button').on('ajax:success', function() {
+  $(this).closest('tr').fadeOut();
+});

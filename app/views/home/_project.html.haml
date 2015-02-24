@@ -1,11 +1,13 @@
-= link_to project.name, project_path(project)
 .row
-  .col-lg-4
-    = link_to '#' do
-      = "#{project.users.count} users"
-  .col-lg-4
-    = link_to project_project_languages_path(project) do
-      = "#{project.project_languages.count} languages"
-  .col-lg-4
-    = link_to project_translation_entries_path(project) do
-      = "#{project.translation_entries.count} translation entries"
+  .col-xs-4.text-center.bg-primary
+    = link_to '#', :data => {:toggle => 'tooltip', :'original-title' => 'Users'} do
+      Users
+      = "#{project.users.count}"
+  .col-xs-4.text-center.bg-danger
+    = link_to project_project_languages_path(project), :remote => true, :data => {toggle: 'modal', target: '#myModal'} do
+      Languages
+      = "#{project.project_languages.count}"
+  .col-xs-4.text-center.bg-success
+    = link_to project_translation_entries_path(project), :data => {:toggle => 'tooltip', :'original-title' => 'Translation entries'} do
+      Translations
+      = "#{project.translation_entries.count}"

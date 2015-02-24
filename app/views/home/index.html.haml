@@ -1,14 +1,20 @@
 .row
   .col-lg-12
-    %h1 Projects
+    %h1.text-center.marg-bot-xl
+      Projects
+      =link_to new_project_path, remote: true, data: {toggle: 'modal', target: '#myModal'}, :class => 'btn btn-default' do
+        Add new
+        %i.fa.fa-plus
 - @current_user_projects.in_groups_of(3, false).each do |group|
-  .row
+  .flex-container
     - group.each do |project|
-      .col-lg-4
-        .panel.panel-default
-          .panel-heading
-          .panel-body
-            = render partial: 'project', locals: {project: project}
-          .panel-footer
-.row
-  =link_to 'New Project', new_project_path
+      .flex-item.project-panel
+        %h3.text-center.font-semibold
+          = link_to project.name, project_translation_entries_path(project)
+          %i.fa.fa-info-circle{:data => {:toggle => 'popover', :'content' => "API key #{project.session_api_key.access_token}", :placement => 'top'}}
+        %h5.text-left
+          = project.description
+        .panel-footer
+          = render partial: 'project', locals: {project: project}
+
+

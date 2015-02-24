@@ -1,0 +1,9 @@
+= simple_form_for @project do |f|
+  = f.input :name
+  = f.input :description
+  = f.label 'Select project language'
+  %br
+  = f.select :default_language_id, options_for_select(Language.all.map{|l| [l.name, l.id]})
+  %br
+  = f.submit :class => 'btn btn-success pull-right'
+  .clearfix

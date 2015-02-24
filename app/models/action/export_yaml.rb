@@ -33,7 +33,7 @@ module Action
           children[entry.key] = directory_hash(entry, entry.key)
         else
           value = (Translation.where(translation_entry: entry, language: @language).first.try(:value) ||'')
-          children[entry.key] = value
+          children[entry.key] = (value.start_with?('[') && value.ends_with?(']')) ? eval(value) : value
         end
       end
       return data

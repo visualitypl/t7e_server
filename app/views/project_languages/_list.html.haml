@@ -1,0 +1,20 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+      %th
+
+  %tbody
+    - @project_languages.each do |project_language|
+      %tr.project-language
+        %td= project_language.language.name
+        -#%td= link_to 'Show', [@project, project_language]
+        %td.text-right
+          = link_to [@project, project_language], :method => :delete, :remote => true, :data => { :confirm => 'Are you sure?' }, :class => 'remove-button' do
+            %i.fa.fa-trash-o
+
+%br
+
+= link_to 'Add language', new_project_project_language_path(@project), remote: true, :class => 'btn btn-success pull-right'
+.clearfix
+#add-language

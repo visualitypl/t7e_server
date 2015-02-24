@@ -17,10 +17,38 @@ $color-blue: #3498DB;
 .no-padding {padding: 0 !important;}
 .no-border {border: none !important;}
 .font-bold  {font-weight: bold;}
+.font-semibold {font-weight: 600;}
 .inline {display: inline-block;}
 .text-blue {color: $color-blue;}
 .text-black {color: #000 !important;}
+.tooltip-inner, .popover-content {word-break: break-word}
 
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.flex-item {
+  background: white;
+  padding: 5px;
+  width: 30%;
+  height: auto;
+  margin-top: 10px;
+  color: white;
+  font-weight: bold;
+  text-align: center
+}
 // buttons
 
 .btn-grey { @extend .btn-default; border-radius: 0 !important; background-color: lighten( #363636, 20%); color: #fff !important; position: relative;
@@ -59,5 +87,31 @@ $color-blue: #3498DB;
     .col-xs-8 {font-size: 13px;}
   }
   .translation-container:nth-child(1) {border-bottom: 1px solid #e3e3e3}
+}
+
+// HOME PAGE
+
+.flex-item.project-panel {
+  position: relative; padding-bottom: 50px; border: 1px solid #cccccc; color: black;
+  h3 {
+
+    a {color: black;}
+    i {font-size: 14px;}
+  }
+  h5 {padding: 0 15px;}
+  .popover-content {font-size: 14px;}
+  .panel-footer { position: absolute; width: 100%; left: 0; bottom: 0; padding: 0 15px; color: white;
+    a {color: white;}
+    .col-xs-4 {padding: 10px 0;}
+    .bg-danger {background: lighten(red, 20%)}
+    .bg-success {background: lighten(#5cb85c, 20%)}
+  }
+}
+
+// MEDIA QUERIES
+
+@media all and (max-width: 800px) {
+  .flex-container {flex-direction: column;}
+  .flex-item{width: 100%}
 }
 
