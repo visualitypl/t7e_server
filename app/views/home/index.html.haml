@@ -11,9 +11,13 @@
       .flex-item.project-panel
         %h3.text-center.font-semibold
           = link_to project.name, project_translation_entries_path(project)
-          %i.fa.fa-info-circle{:data => {:toggle => 'popover', :'content' => "API key #{project.session_api_key.access_token}", :placement => 'top'}}
-        %h5.text-left
+        %h5.text-left.marg-bot-xl
           = project.description
+        .panel-body
+          .row
+            .col-xs-12.text-center.text-black
+              API key
+              = project.session_api_key.access_token
         .panel-footer
           = render partial: 'project', locals: {project: project}
 

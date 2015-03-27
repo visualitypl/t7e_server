@@ -42,7 +42,7 @@ $color-blue: #3498DB;
 
 .flex-item {
   background: white;
-  padding: 5px;
+  padding: 0;
   width: 30%;
   height: auto;
   margin-top: 10px;
@@ -108,6 +108,7 @@ nav.navbar {
     width: 100% !important;
   }
   .editable-buttons { display: block !important; margin-top: 20px;}
+  .editable-cancel {color: white;}
 
   .collapse-link {
     &::before { content: "\f077"; font-family: FontAwesome;}
@@ -128,6 +129,7 @@ nav.navbar {
   }
   h5 {padding: 0 15px;}
   .popover-content {font-size: 14px;}
+  .panel-body {border-top: 1px solid #cccccc; padding-top: 10px; padding-bottom: 0;}
   .panel-footer { position: absolute; width: 100%; left: 0; bottom: 0; padding: 0 15px; color: white;
     a {color: white;}
     .col-xs-4 {padding: 10px 0;}
