@@ -1,3 +1,7 @@
-$('#myModal .modal-title').html('Add new key');
+<% if params[:key_type] == "key" %>
+  $('#myModal .modal-title').html('Add new key');
+<% else %>
+  $('#myModal .modal-title').html('Add new block');
+<% end %>
 $('#myModal .modal-body').html("<%= j render("/translation_entries/form")%>");
 $('#translation_entry_path').focus();

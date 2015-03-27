@@ -2,4 +2,4 @@
   = f.error_notification
   .form-inputs
     = f.select :language_id, options_for_select(Language.where.not(id: @project.project_languages.select(:language_id)).map{|l| [l.name, l.id]}), {}, { :class => 'form-control input-sm' }
-    = f.submit '+ Add', :class => 'btn btn-primary btn-xs'
+    = f.submit '+ Add', :class => 'btn btn-primary btn-xs marg-top'
