@@ -6,7 +6,7 @@
           %ol.breadcrumb.marg-none
             - @parent_blocks.each do |parent_block|
               %li
-                = select_tag '', options_for_select(parent_block[:siblings].map{|s| [s.key, s.id]}), selected: parent_block[:block].id, :class => 'form-control input-sm'
+                = select_tag '', options_for_select(parent_block[:siblings].map{|s| [s.key, s.id, { class: "dictionary" }]}), selected: parent_block[:block].id
             %li.active.font-bold= translation_key.key
         .col-xs-1.text-center.bg-grey-light
           %a.text-black.font-bold.collapse-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#translation-#{translation_key.id}", :class => "#{index > 0 ? 'collapsed' : ''}"}
