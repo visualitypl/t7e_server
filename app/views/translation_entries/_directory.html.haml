@@ -3,12 +3,12 @@
     .col-xs-3.bg-blue.text-center
       - if @translation_entry
         = link_to '', @translation_entry.parent_entry ? project_translation_entry_path(id: @translation_entry.parent_entry) : project_translation_entries_path,
-           remote: true, class: 'directory-navigation-link glyphicon glyphicon-chevron-left'
+           remote: true, class: 'directory-navigation-link glyphicon glyphicon-chevron-left text-white'
     .col-xs-9
       .dropdown.grey-dropdown.file-search
         %button#dropdownMenu1.btn.btn-grey.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :type => "button"}
           Dropdown
-          %span.caret
+          %i.fa.fa-chevron-down
         %ul.dropdown-menu.dropdown-menu-left{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
           %li{:role => "presentation"}
             %form{:role => "search"}
@@ -28,8 +28,9 @@
         %i.fa.text-blue.marg-right-sm{class: translation_entry.block? ? 'fa-folder' : 'fa-file-text-o'}
         %span
           - if translation_entry.key?
-            = link_to translation_entry.key, show_key_project_translation_entry_path(id: translation_entry), remote: true, class: 'directory-navigation-link'
+            = link_to translation_entry.key, show_key_project_translation_entry_path(id: translation_entry), remote: true, class: 'directory-navigation-link text-black'
             -#= link_to translation_entry.key, project_translation_entry_translations_path(translation_entry_id: translation_entry), remote: true
           - else
-            = link_to translation_entry.key, project_translation_entry_path(id: translation_entry), remote: true, class: 'directory-navigation-link'
-= render partial: 'add_block'
+            = link_to translation_entry.key, project_translation_entry_path(id: translation_entry), remote: true, class: 'directory-navigation-link text-black'
+.text-center.marg-top
+  = render partial: 'add_block'

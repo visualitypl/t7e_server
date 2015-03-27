@@ -21,6 +21,7 @@ $color-blue: #3498DB;
 .inline {display: inline-block;}
 .text-blue {color: $color-blue;}
 .text-black {color: #000 !important;}
+.text-white {color: #fff !important;}
 .tooltip-inner, .popover-content {word-break: break-word}
 
 
@@ -64,6 +65,10 @@ $color-blue: #3498DB;
   [class^="col-"] {display: table-cell; float: none; padding: 0}
 }
 
+.dropdown-toggle {
+  i {position: absolute; right: 10px;}
+}
+
 
 // File lisT
 
@@ -80,7 +85,10 @@ $color-blue: #3498DB;
 // translation list
 
 #accordion {
-  .breadcrumbs-container {padding: 10px 0;}
+  .breadcrumbs-container {padding: 10px 0;
+    select {display: inline-block; width: auto;}
+  }
+
   .translation-container {
     .row {display: table}
     [class^="col-"] {display: table-cell; float: none; vertical-align: middle;}

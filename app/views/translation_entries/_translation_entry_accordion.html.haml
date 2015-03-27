@@ -6,7 +6,7 @@
           %ol.breadcrumb.marg-none
             - @parent_blocks.each do |parent_block|
               %li
-                %a{:href => "#"}= select_tag '', options_for_select(parent_block[:siblings].map{|s| [s.key, s.id]}), selected: parent_block[:block].id
+                = select_tag '', options_for_select(parent_block[:siblings].map{|s| [s.key, s.id]}), selected: parent_block[:block].id, :class => 'form-control input-sm'
             %li.active.font-bold= translation_key.key
         .col-xs-1.text-center.bg-grey-light
           %a.text-black.font-bold.collapse-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#translation-#{translation_key.id}", :class => "#{index > 0 ? 'collapsed' : ''}"}
@@ -35,7 +35,7 @@
             -#.text-left.marg-top
             -#  .btn.btn-success.btn-sm.text-uppercase Update
             -#  .btn.btn-grey.btn-sm.text-uppercase Cancel
-          .col-xs-2.text-right
+          .col-xs-2.text-center
             = link_to_google_translate t('texts.translate_google_html'), from_language: translation.language.iso_code, to_language: 'en', text: translation.value, target: '_blank'
             %select.form-control.input-sm
               %option{:value => "1"} Completed
