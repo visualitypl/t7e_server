@@ -9,14 +9,14 @@
                 %a{:href => "#"}= select_tag '', options_for_select(parent_block[:siblings].map{|s| [s.key, s.id]}), selected: parent_block[:block].id
             %li.active.font-bold= translation_key.key
         .col-xs-1.text-center.bg-grey-light
-          %a.text-black.font-bold{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#translation-#{translation_key.id}"}
-            ^
+          %a.text-black.font-bold.collapse-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#translation-#{translation_key.id}", :class => "#{index > 0 ? 'collapsed' : ''}"}
+
   .panel-collapse.collapse{"aria-labelledby" => "headingOne", :role => "tabpanel", :id => "translation-#{translation_key.id}", :class => "#{index == 0 ? 'in' : ''}"}
     - @translations[translation_key.id].each do |translation| #TODO: fix it
       .panel-body.no-border-radius.translation-container
         .row
-          .col-xs-2.text-left
-            %i.glyphicon.glyphicon-flag.text-blue.marg-right
+          .col-xs-2.text-left.f16
+            .flag{:class => "flag #{language_flag(translation.language.iso_code)}"}
             %h4.font-bold.text-uppercase.inline= translation.language.iso_code
           .col-xs-8
             .preview
@@ -36,7 +36,7 @@
             -#  .btn.btn-success.btn-sm.text-uppercase Update
             -#  .btn.btn-grey.btn-sm.text-uppercase Cancel
           .col-xs-2.text-right
-            = link_to_google_translate 'Translate on Google', from_language: translation.language.iso_code, to_language: 'en', text: translation.value, target: '_blank'
+            = link_to_google_translate t('texts.translate_google_html'), from_language: translation.language.iso_code, to_language: 'en', text: translation.value, target: '_blank'
             %select.form-control.input-sm
               %option{:value => "1"} Completed
               %option{:value => "2"} Incomplete

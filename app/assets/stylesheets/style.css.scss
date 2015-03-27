@@ -87,7 +87,22 @@ $color-blue: #3498DB;
     .col-xs-8 {font-size: 13px;}
   }
   .translation-container:nth-child(1) {border-bottom: 1px solid #e3e3e3}
+
+  .editable-container,
+  .editable-container .form-group,
+  .editable-input,
+  .editable-input .form-control {
+    width: 100% !important;
+  }
+  .editable-buttons { display: block !important; margin-top: 20px;}
+
+  .collapse-link {
+    &::before { content: "\f077"; font-family: FontAwesome;}
+    &.collapsed::before {content:  "\f078";}
+  }
 }
+
+
 
 // HOME PAGE
 
