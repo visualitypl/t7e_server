@@ -3,7 +3,7 @@
   = f.input :description
   = f.label 'Select project language'
   %br
-  = f.select :default_language_id, options_for_select(Language.all.map{|l| [l.name, l.id]})
+  = f.select :default_language_id, options_for_select(Language.all.map{|l| [l.name, l.id]}), {}, { :class => 'form-control input-sm' }
   %br
   = f.submit :class => 'btn btn-success pull-right'
   .clearfix

@@ -33,3 +33,6 @@ en:
     developer: 'Developer'
     project_owner: 'Project owner'
     admin: 'Admin'
+
+  texts:
+    translate_google_html: "Translate with <i class='fa fa-google'></i>"

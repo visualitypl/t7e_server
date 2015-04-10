@@ -21,6 +21,7 @@ $color-blue: #3498DB;
 .inline {display: inline-block;}
 .text-blue {color: $color-blue;}
 .text-black {color: #000 !important;}
+.text-white {color: #fff !important;}
 .tooltip-inner, .popover-content {word-break: break-word}
 
 
@@ -41,7 +42,7 @@ $color-blue: #3498DB;
 
 .flex-item {
   background: white;
-  padding: 5px;
+  padding: 0;
   width: 30%;
   height: auto;
   margin-top: 10px;
@@ -64,6 +65,15 @@ $color-blue: #3498DB;
   [class^="col-"] {display: table-cell; float: none; padding: 0}
 }
 
+.dropdown-toggle {
+  i {position: absolute; right: 10px;}
+}
+
+// NAVBAR
+
+nav.navbar {
+  border-radius: 0;
+}
 
 // File lisT
 
@@ -80,14 +90,33 @@ $color-blue: #3498DB;
 // translation list
 
 #accordion {
-  .breadcrumbs-container {padding: 10px 0;}
+  .breadcrumbs-container {padding: 10px 0;
+    select {display: inline-block; width: auto; @include appearance(none); border: none; color: $color-blue; cursor: pointer; font-weight: 700}
+  }
+
   .translation-container {
     .row {display: table}
     [class^="col-"] {display: table-cell; float: none; vertical-align: middle;}
     .col-xs-8 {font-size: 13px;}
   }
   .translation-container:nth-child(1) {border-bottom: 1px solid #e3e3e3}
+
+  .editable-container,
+  .editable-container .form-group,
+  .editable-input,
+  .editable-input .form-control {
+    width: 100% !important;
+  }
+  .editable-buttons { display: block !important; margin-top: 20px;}
+  .editable-cancel {color: white;}
+
+  .collapse-link {
+    &::before { content: "\f077"; font-family: FontAwesome;}
+    &.collapsed::before {content:  "\f078";}
+  }
 }
+
+
 
 // HOME PAGE
 
@@ -100,6 +129,7 @@ $color-blue: #3498DB;
   }
   h5 {padding: 0 15px;}
   .popover-content {font-size: 14px;}
+  .panel-body {border-top: 1px solid #cccccc; padding-top: 10px; padding-bottom: 0;}
   .panel-footer { position: absolute; width: 100%; left: 0; bottom: 0; padding: 0 15px; color: white;
     a {color: white;}
     .col-xs-4 {padding: 10px 0;}

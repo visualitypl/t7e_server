@@ -14,7 +14,7 @@
             %i.fa.fa-trash-o
 
 %br
-
-= link_to 'Add language', new_project_project_language_path(@project), remote: true, :class => 'btn btn-success pull-right'
+- if @project_languages.all.size < Language.all.size
+  = link_to 'Add language', new_project_project_language_path(@project), remote: true, :class => 'btn btn-success pull-right'
 .clearfix
-#add-language
+#add-language.marg-top
