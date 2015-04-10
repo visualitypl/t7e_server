@@ -1,5 +1,6 @@
 var TranslationEntry = React.createClass({
   propTypes: {
+    path: React.PropTypes.string,
     defaultLanguageTranslation: React.PropTypes.string,
     updateUrl: React.PropTypes.string
   },
@@ -21,9 +22,7 @@ var TranslationEntry = React.createClass({
             <div className="row">
               <div className="col-xs-12">
                 <ol className="breadcrumb">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Library</a></li>
-                  <li className="active">Data</li>
+                  <li><a href="#">{this.props.path}</a></li>
                 </ol>
                 <div className="preview">
                   {this.props.defaultLanguageTranslation}
