@@ -40,7 +40,9 @@ var Translation = React.createClass({
         <div className="col-xs-2 text-right">
           <i className="fa fa-check text-success fa-lg marg-bot"></i>
           <br/>
-          <i className="fa fa-question fa-lg"></i>
+          <i className="fa fa-question fa-lg marg-bot"></i>
+          <br/>
+          <i className="fa fa-google fa-lg marg-bot text-info"></i>
         </div>
       </div>
     );
