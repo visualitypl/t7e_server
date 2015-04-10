@@ -14,7 +14,7 @@ function initEditables(){
         send: 'always',
         onblur: 'cancel'
     });
-    $.fn.editableform.buttons =
-    '<button type="submit" class="btn btn-success editable-submit btn-mini">ACCEPT</button>' +
-    '<button type="button" class="btn editable-cancel btn-mini">RESET</button>';
+    //$.fn.editableform.buttons =
+    //'<button type="submit" class="btn btn-success editable-submit btn-mini">ACCEPT</button>' +
+    //'<button type="button" class="btn editable-cancel btn-mini">RESET</button>';
 }

@@ -23,7 +23,7 @@ class TranslationEntriesController < ApplicationController
   end
 
   def search
-    # TODO: take search params
+    search_keyword = params[:search_keyword]
     @translation_keys = @project.translation_entries.key.includes(:translations).limit(10)
 
     set_translations
@@ -105,6 +105,7 @@ class TranslationEntriesController < ApplicationController
         end
         translation_key.save!
         @translations[translation_key.id] = translation_key.translations.where(language_id: @project.project_languages.pluck(:language_id))
+          .joins(:language).select('translations.id, translations.translation_entry_id, translations.value, translations.language_id, languages.iso_code')
         #TODO: order by project language position
       end
     end
