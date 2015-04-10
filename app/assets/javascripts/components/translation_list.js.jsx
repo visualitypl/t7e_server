@@ -2,9 +2,10 @@ var TranslationList = React.createClass({
   getInitialState: function() {
     return {data: []};
   },
-  loadTranslationsFromServer: function() {
+  loadTranslationsFromServer: function(searchKeyword) {
     $.ajax({
       url: this.props.url,
+      data: { search_keyword: searchKeyword },
       dataType: 'json',
       success: function(data) {
         this.setState({data: data});
@@ -14,8 +15,10 @@ var TranslationList = React.createClass({
       }.bind(this)
     });
   },
-  handleSearch: function(){
-    this.loadTranslationsFromServer();
+  handleChange: function(event){
+    if (event.target.value.length > 1){
+      this.loadTranslationsFromServer(event.target.value);
+    }
     return;
   },
   render: function() {
@@ -27,8 +30,8 @@ var TranslationList = React.createClass({
 
     return (
       <div>
+        <input type="text" placeholder="Search" onChange={this.handleChange}/>
         {translationEntries}
-        <button onClick={this.handleSearch}>Search</button>
       </div>
     );
   }
