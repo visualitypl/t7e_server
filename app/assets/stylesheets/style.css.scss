@@ -72,7 +72,7 @@ $color-blue: #3498DB;
 // NAVBAR
 
 nav.navbar {
-  border-radius: 0;
+  border-bottom: 1px solid #e5ebee;
 }
 
 // File lisT
@@ -113,6 +113,26 @@ nav.navbar {
   .collapse-link {
     &::before { content: "\f077"; font-family: FontAwesome;}
     &.collapsed::before {content:  "\f078";}
+  }
+}
+
+.translation-entry {
+  border-bottom: 1px solid #dddddd;
+}
+
+.translation-item {
+  .col-xs-8 {
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 20px;
+  }
+  .fa-question {
+    padding-right: 8px;
+  }
+}
+
+.main-search {
+  .form-control {
+    border-right: none;
   }
 }
 
