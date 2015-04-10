@@ -20,6 +20,7 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'cancancan'
 gem 'devise_invitable'
+gem 'react-rails', '~> 1.0'
 
 group :development, :test do
   gem 'better_errors'
