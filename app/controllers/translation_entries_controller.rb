@@ -2,8 +2,8 @@ class TranslationEntriesController < ApplicationController
   before_action :set_project
   before_action :set_translation_entry, only: [:show, :edit, :update, :destroy, :show_key]
   before_action :set_translation_keys, only: [:index, :show, :show_key]
-  before_action :set_translations
-  before_action :set_parent_blocks
+  before_action :set_translations, except: [:search]
+  before_action :set_parent_blocks, except: [:search]
 
   respond_to :html, :js
 
@@ -20,6 +20,21 @@ class TranslationEntriesController < ApplicationController
     #for directory listing
     @translation_entries = @project.translation_entries.where(parent_entry: @translation_entry).order(:key_type => :desc).all
     respond_with(@translation_entry)
+  end
+
+  def search
+    # TODO: take search params
+    @translation_keys = @project.translation_entries.key.includes(:translations).limit(10)
+
+    set_translations
+    data = []
+    @translations.each do |id, translations|
+      data <<  {
+        defaultLanguageTranslation: translations[0].value,
+        translations: translations
+      }
+    end
+    render json: data.to_json
   end
 
   def show_key
