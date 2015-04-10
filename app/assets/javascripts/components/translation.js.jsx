@@ -25,7 +25,7 @@ var Translation = React.createClass({
       flagCountry = 'gb';
     }
     var classString = "flag " + flagCountry;
-    var updateUrl = this.props.updateUrl + this.props.translationEntryId + '/translations/' + this.props.translationId;
+    var updateUrl = this.props.updateUrl + '/' + this.props.translationEntryId + '/translations/' + this.props.translationId;
     return (
       <div className="row marg-bot-lg translation-item">
         <div className="col-xs-2 text-left f16">

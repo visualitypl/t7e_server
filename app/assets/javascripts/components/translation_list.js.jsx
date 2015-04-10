@@ -22,9 +22,10 @@ var TranslationList = React.createClass({
     return;
   },
   render: function() {
+    var updateUrl = this.props.updateUrl;
     var translationEntries = this.state.data.map(function (translationEntry) {
       return (
-        <TranslationEntry defaultLanguageTranslation={translationEntry['defaultLanguageTranslation']} translations={translationEntry['translations']}/>
+        <TranslationEntry defaultLanguageTranslation={translationEntry['defaultLanguageTranslation']} translations={translationEntry['translations']} updateUrl={updateUrl}/>
       );
     });
 

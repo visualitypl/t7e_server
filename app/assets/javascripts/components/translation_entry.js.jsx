@@ -5,10 +5,11 @@ var TranslationEntry = React.createClass({
   },
 
   render: function() {
+    var updateUrl = this.props.updateUrl;
     var translations = this.props.translations.map(function (translation) {
       return (
         <Translation value={translation['value']} language={translation['language_id']}
-          isoCode={translation['iso_code']} updateUrl='http://localhost:3000/projects/1/translation_entries/' translationEntryId={translation['translation_entry_id']}
+          isoCode={translation['iso_code']} updateUrl={updateUrl} translationEntryId={translation['translation_entry_id']}
           translationId={translation['id']}
         />
       );
