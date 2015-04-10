@@ -1,6 +1,44 @@
-.div
-  %span Project name
-  %span= @project.name
-.div
-  %span API Key
-  %span= @project.session_api_key.access_token
+.row.marg-top-xl
+  .col-lg-10.col-lg-offset-1
+    .translation-panel
+      .main-search.marg-bot
+        .input-group
+          %input.form-control{:placeholder => "Search", :type => "text"}/
+          %span.input-group-addon
+            %i.fa.fa-search
+        = react_component('TranslationList', url: 'http://localhost:3000/projects/1/translation_entries/search')
+      .translation-list
+        .panel.panel-default
+          .panel-body
+            .row.translation-entry
+              .col-lg-6
+                .panel-body.no-border-radius.translation-container
+                  .row
+                    .col-xs-12
+                      .preview
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius aperiam natus nisi quis illo consequatur, impedit incidunt, ut eveniet animi rerum voluptatum quibusdam, pariatur dolore hic earum consequuntur! Natus, laboriosam!
+
+              .col-lg-6
+                .panel-body.no-border-radius.translation-container
+                  .row.marg-bot-lg.translation-item
+                    .col-xs-2.text-left.f16
+                      .flag.flag.us
+                      %h4.font-bold.text-uppercase.inline US
+                    .col-xs-8
+                      .preview
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum asperiores, quam in nisi velit facilis dolorum numquam, nesciunt fugiat placeat eaque, temporibus fuga nihil. Fuga quia id hic tempora repudiandae!
+                    .col-xs-2.text-right
+                      %i.fa.fa-check.text-success.fa-lg.marg-bot
+                      %br/
+                      %i.fa.fa-question.fa-lg
+                  .row.translation-item
+                    .col-xs-2.text-left.f16
+                      .flag.flag.pl
+                      %h4.font-bold.text-uppercase.inline PL
+                    .col-xs-8
+                      .preview
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum rerum itaque quae nulla debitis esse molestias assumenda repellendus. Totam soluta rerum itaque, ipsa in voluptates officiis explicabo obcaecati. Nesciunt, optio!
+                    .col-xs-2.text-right
+                      %i.fa.fa-check.text-success.fa-lg.marg-bot
+                      %br/
+                      %i.fa.fa-question.fa-lg

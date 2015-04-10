@@ -14,10 +14,25 @@ var TranslationEntry = React.createClass({
       );
     });
     return (
-      <div className="panel">
-        <div className="row">
-          <div className="col-lg-3">{this.props.defaultLanguageTranslation}</div>
-          <div className="col-lg-9">{translations}</div>
+      <div className="row translation-entry">
+        <div className="col-lg-4">
+          <div className="panel-body no-border-radius translation-container">
+            <div className="row">
+              <div className="col-xs-12">
+                <ol className="breadcrumb">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Library</a></li>
+                  <li className="active">Data</li>
+                </ol>
+                <div className="preview">
+                  {this.props.defaultLanguageTranslation}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-8">
+          <div className="panel-body no-border-radius translation-container">{translations}</div>
         </div>
       </div>
     );

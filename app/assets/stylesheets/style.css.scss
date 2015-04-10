@@ -118,6 +118,11 @@ nav.navbar {
 
 .translation-entry {
   border-bottom: 1px solid #dddddd;
+
+  .breadcrumb {
+    padding-left: 0;
+    background-color: transparent;
+  }
 }
 
 .translation-item {
