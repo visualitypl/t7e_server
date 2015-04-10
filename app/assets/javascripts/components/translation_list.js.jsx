@@ -29,10 +29,27 @@ var TranslationList = React.createClass({
     });
 
     return (
-      <div>
-        <input type="text" placeholder="Search" onChange={this.handleChange}/>
-        {translationEntries}
+
+      <div className="row marg-top-xl">
+        <div className="col-lg-10 col-lg-offset-1">
+           <div className="translation-panel">
+            <div className="main-search marg-bot">
+              <div className="input-group">
+                <input className="form-control" placeholder="Search" type="text" onChange={this.handleChange}/>
+                <span className="input-group-addon">
+                  <i className="fa fa-search"></i>
+                </span>
+              </div>
+            </div>
+            <div className="translation-list">
+              <div className="panel panel-default">
+                <div className="panel-body">{translationEntries}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     );
   }
 });

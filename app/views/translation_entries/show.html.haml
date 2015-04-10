@@ -1,26 +1,2 @@
-%section.marg-bot-lg.marg-top-lg
-.row
-  .col-lg-3
-    .panel.panel-default.no-border
-      .panel-heading.bg-black.text-center{ :style => "border-bottom: 0;" }
-        .dropdown.grey-dropdown
-          %button#dropdownMenu1.btn.btn-grey.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :type => "button"}
-            Filter by
-            %i.fa.fa-chevron-down
-          %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
-            %li{:role => "presentation"}
-              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Action
-            %li{:role => "presentation"}
-              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
-            %li{:role => "presentation"}
-              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
-            %li{:role => "presentation"}
-              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
-      #translation_entries_directory_list
-        = render partial: 'directory'
-  .col-lg-9
-    .well.text-center.no-border-radius
-      #add_button
-        = render partial: 'add'
-    #translation_keys
-      = render partial: 'keys'
+= react_component('TranslationList', url: 'http://localhost:3000/projects/1/translation_entries/search',
+         updateUrl: 'http://localhost:3000/projects/1/translation_entries/')

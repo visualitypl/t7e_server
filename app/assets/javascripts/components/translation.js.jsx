@@ -27,13 +27,20 @@ var Translation = React.createClass({
     var classString = "flag " + flagCountry;
     var updateUrl = this.props.updateUrl + this.props.translationEntryId + '/translations/' + this.props.translationId;
     return (
-      <div className="row">
-        <div className="col-lg-2">
+      <div className="row marg-bot-lg translation-item">
+        <div className="col-xs-2 text-left f16">
           <div className={classString}></div>
           <h4 className="font-bold text-uppercase inline">{this.props.isoCode}</h4>
         </div>
-        <div className="col-lg-8">
-          <a href="#" className="translation-editable" ref="editable" data-url={updateUrl}>{this.props.value}</a>
+        <div className="col-xs-8">
+          <div className="preview">
+            <a href="#" className="translation-editable" ref="editable" data-url={updateUrl}>{this.props.value}</a>
+          </div>
+        </div>
+        <div className="col-xs-2 text-right">
+          <i className="fa fa-check text-success fa-lg marg-bot"></i>
+          <br/>
+          <i className="fa fa-question fa-lg"></i>
         </div>
       </div>
     );
