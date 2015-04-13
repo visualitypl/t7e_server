@@ -1,2 +1,2 @@
-= react_component('TranslationList', url: 'http://localhost:3000/projects/1/translation_entries/search',
-         updateUrl: 'http://localhost:3000/projects/1/translation_entries/')
+= react_component('TranslationList', url: search_project_translation_entries_path(@current_user_projects.first),
+         updateUrl: project_translation_entries_url(@current_user_projects.first))

@@ -23,13 +23,15 @@ class TranslationEntriesController < ApplicationController
   end
 
   def search
-    search_keyword = params[:search_keyword]
-    @translation_keys = @project.translation_entries.key.includes(:translations).limit(10)
+    query = ::TranslationEntryQuery.new(project: @project, search_keyword: params[:search_keyword])
+
+    @translation_keys = query.results.includes(:translations).limit(30)
 
     set_translations
     data = []
     @translations.each do |id, translations|
       data <<  {
+        path: translations[0].translation_entry.path,
         defaultLanguageTranslation: translations[0].value,
         translations: translations
       }
