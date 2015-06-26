@@ -18,7 +18,7 @@
     },
     "T7E_HOST": {
       "description": "Heroku application domain address.",
-      "generator": "some-hostname.herokuapp.com"
+      "value": "some-hostname.herokuapp.com"
     },
     "T7E_EMAIL_FROM": {
       "description": "Default email from.",
