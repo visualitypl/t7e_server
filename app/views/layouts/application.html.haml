@@ -30,8 +30,7 @@
                   - @current_user_projects.each do |project|
                     %li
                       = link_to project.name, project_translation_entries_path(project)
-                - if can? :read, User
-                  %li= link_to 'Users', project_users_path
+                %li= link_to 'Users', project_users_path
             %ul.nav.navbar-nav.navbar-right
               %li
                 - if user_signed_in?
