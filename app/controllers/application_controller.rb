@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_projects
 
+  private
+
   def set_projects
-    if current_user && current_user.id == 1
-      @current_user_projects = Project.all
-    else
-      @current_user_projects = current_user.present? ? current_user.projects : []
-    end
+    return [] unless current_user
+
+    @current_user_projects = (current_user.id == 1) ? Project.all : current_user.projects
   end
 end

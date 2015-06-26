@@ -5,16 +5,13 @@ class ProjectLanguagesController < ApplicationController
 
   def index
     @project_languages = @project.project_languages.all
-    respond_with(@project_languages)
   end
 
   def show
-    respond_with(@project_language)
   end
 
   def new
     @project_language = @project.project_languages.new
-    respond_with(@project_language)
   end
 
   def create
@@ -40,15 +37,16 @@ class ProjectLanguagesController < ApplicationController
   end
 
   private
-    def set_project
-      @project = Project.find(params[:project_id])
-    end
 
-    def set_project_language
-      @project_language = ProjectLanguage.find(params[:id])
-    end
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
 
-    def project_language_params
-      params.require(:project_language).permit(:language_id)
-    end
+  def set_project_language
+    @project_language = ProjectLanguage.find(params[:id])
+  end
+
+  def project_language_params
+    params.require(:project_language).permit(:language_id)
+  end
 end

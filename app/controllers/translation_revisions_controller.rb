@@ -37,11 +37,12 @@ class TranslationRevisionsController < ApplicationController
   end
 
   private
-    def set_translation_revision
-      @translation_revision = TranslationRevision.find(params[:id])
-    end
 
-    def translation_revision_params
-      params.require(:translation_revision).permit(:translation_id, :user_id, :value)
-    end
+  def set_translation_revision
+    @translation_revision = TranslationRevision.find(params[:id])
+  end
+
+  def translation_revision_params
+    params.require(:translation_revision).permit(:translation_id, :user_id, :value)
+  end
 end
