@@ -4,7 +4,7 @@
   "repository": "https://github.com/visualitypl/t7e_server",
   "keywords": ["rails", "internalization"],
   "scripts": {
-    "postdeploy": "bundle exec rake db:seed"
+    "postdeploy": "bundle exec rake db:migrate db:seed"
   },
   "success_url": "/",
   "env": {
