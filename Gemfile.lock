@@ -116,6 +116,8 @@ GEM
     pg (0.18.1)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -232,6 +234,7 @@ DEPENDENCIES
   mysql2
   pg
   pundit
+  quiet_assets
   rails (= 4.2.1)
   rails_12factor
   react-rails (~> 1.0)
