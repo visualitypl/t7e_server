@@ -8,7 +8,7 @@
     = csrf_meta_tags
   %body
     %section.header-nav
-      %nav.navbar.navbar-inverse{:role => "navigation"}
+      %nav.navbar.navbar{:role => "navigation"}
         .container-fluid
           / Brand and toggle get grouped for better mobile display
           .navbar-header
@@ -23,34 +23,18 @@
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             %ul.nav.navbar-nav.marg-left-xl
               %li.dropdown
-                %a.dropdown-toggle.bg-grey{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                   Projects
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}
                   - @current_user_projects.each do |project|
                     %li
                       = link_to project.name, project_translation_entries_path(project)
-                - if can? :read, User
-                  %li= link_to 'Users', project_users_path
+                %li= link_to 'Users', project_users_path
             %ul.nav.navbar-nav.navbar-right
-              %li.dropdown
-                %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                  Username
-                  %span.caret
-                %ul.dropdown-menu{:role => "menu"}
-                  %li
-                    %a{:href => "#"} Action
-                  %li
-                    %a{:href => "#"} Another action
-                  %li
-                    %a{:href => "#"} Something else here
-                  %li.divider
-                  %li
-                    - if user_signed_in?
-                      = link_to 'Logout', destroy_user_session_path, method: :delete
-            %form.navbar-form.navbar-right{:role => "search"}
-              .form-group
-                %input.form-control{:placeholder => "Search", :type => "text"}/
+              %li
+                - if user_signed_in?
+                  = link_to 'Logout', destroy_user_session_path, method: :delete
     - if notice
       .alert.alert-success
         %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×

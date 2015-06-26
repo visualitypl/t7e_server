@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       member do
         get :show_key
       end
+      collection do
+        get :search
+      end
       resources :translations
     end
   end

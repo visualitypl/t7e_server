@@ -1,5 +1,6 @@
 # T7e
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ### Self-hosted translation manager app for Rails
 
