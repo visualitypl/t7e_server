@@ -33,5 +33,6 @@ group :development, :test do
 end
 
 group :heroku do
+  gem 'puma'
   gem 'rails_12factor'
 end
