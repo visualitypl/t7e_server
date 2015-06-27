@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require underscore-min
 //= require react
 //= require react_ujs
 //= require components
-//= require_tree .
+//= require bootstrap-editable.min
+//= require rails-history
+//= require main
