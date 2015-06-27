@@ -9,7 +9,7 @@ var TranslationEntry = React.createClass({
     var updateUrl = this.props.updateUrl;
     var translations = this.props.translations.map(function (translation) {
       return (
-        <Translation value={translation['value']} language={translation['language_id']}
+        <Translation key={translation['id']} value={translation['value']} language={translation['language_id']}
           isoCode={translation['iso_code']} updateUrl={updateUrl} translationEntryId={translation['translation_entry_id']}
           translationId={translation['id']}
         />

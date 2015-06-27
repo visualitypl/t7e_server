@@ -1,7 +1,7 @@
 var Translation = React.createClass({
   propTypes: {
     value: React.PropTypes.string,
-    language: React.PropTypes.string,
+    language: React.PropTypes.number,
     isoCode: React.PropTypes.string,
     updateUrl: React.PropTypes.string
   },

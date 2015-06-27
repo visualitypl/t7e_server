@@ -31,6 +31,7 @@ class TranslationEntriesController < ApplicationController
     data = []
     @translations.each do |id, translations|
       data <<  {
+        id: translations[0].translation_entry.id,
         path: translations[0].translation_entry.path,
         defaultLanguageTranslation: translations[0].value,
         translations: translations
