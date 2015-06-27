@@ -15,6 +15,9 @@ var TranslationList = React.createClass({
       }.bind(this)
     });
   },
+  componentWillMount: function(){
+    this.loadTranslationsFromServer = _.debounce(this.loadTranslationsFromServer,300);
+  },
   handleChange: function(event){
     if (event.target.value.length > 1){
       this.loadTranslationsFromServer(event.target.value);
