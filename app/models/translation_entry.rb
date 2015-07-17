@@ -8,6 +8,10 @@ class TranslationEntry < ActiveRecord::Base
 
   before_save :generate_path
 
+  def self.gettext
+    where(gettext: true)
+  end
+
   private
   def generate_path
     if parent_entry

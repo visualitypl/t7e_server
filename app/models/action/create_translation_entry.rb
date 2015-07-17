@@ -1,38 +1,57 @@
 module Action
   class CreateTranslationEntry
-    def initialize(project, path, key_type)
+    def initialize(project, path, key_type, gettext = false)
       #TODO: validation
       @project = project
       @path = path
       @key_type = key_type
+      @gettext = gettext
 
       raise 'Invalid key type' unless @key_type.in?([:key, :block, 'key', 'block'])
     end
 
     def execute
+      if @gettext
+        #first try to find it
+        translation_entry = @project.translation_entries.gettext.find_by_path(@path)
 
-      validate_path
+        #if not found, extract the key
+        if !translation_entry
+          translation_entry = TranslationEntry.new(
+              project: @project,
+              key: @path,
+              parent_entry_id: nil,
+              key_type: @key_type,
+              gettext: true
+          )
+          translation_entry.save!
+        end
 
-      #first try to find it
-      translation_entry = @project.translation_entries.find_by_path(@path.chomp('.'))
+        translation_entry #return it
+      else
+        validate_path
 
-      #if not found, extract the key
-      if !translation_entry
-        parents = @path.split('.')
-        key = parents.delete(parents[-1])
+        #first try to find it
+        translation_entry = @project.translation_entries.find_by_path(@path.chomp('.'))
 
-        translation_entry = TranslationEntry.new(
-            project: @project,
-            key: key,
-            parent_entry_id: find_parent(parents),
-            key_type: @key_type
-        )
-        translation_entry.save!
+        #if not found, extract the key
+        if !translation_entry
+          parents = @path.split('.')
+          key = parents.delete(parents[-1])
+
+          translation_entry = TranslationEntry.new(
+              project: @project,
+              key: key,
+              parent_entry_id: find_parent(parents),
+              key_type: @key_type
+          )
+          translation_entry.save!
+        end
+
+        #TODO: create the translations
+
+        translation_entry #return it
       end
-
-      #TODO: create the translations
-
-      translation_entry #return it
     end
 
     private
