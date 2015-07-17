@@ -32,7 +32,7 @@ module Action
         validate_path
 
         #first try to find it
-        translation_entry = @project.translation_entries.find_by_path(@path.chomp('.'))
+        translation_entry = @project.translation_entries.yaml.find_by_path(@path.chomp('.'))
 
         #if not found, extract the key
         if !translation_entry
@@ -67,7 +67,7 @@ module Action
     def find_parent(parents)
       last_parent_id = nil
       parents.each do |parent|
-        translation_entry = @project.translation_entries.where(key: parent, parent_entry_id: last_parent_id).first
+        translation_entry = @project.translation_entries.yaml.where(key: parent, parent_entry_id: last_parent_id).first
         unless translation_entry
           translation_entry = TranslationEntry.create!(
                               project: @project,

@@ -12,6 +12,10 @@ class TranslationEntry < ActiveRecord::Base
     where(gettext: true)
   end
 
+  def self.yaml
+    where.not(gettext: true)
+  end
+
   private
   def generate_path
     if parent_entry
