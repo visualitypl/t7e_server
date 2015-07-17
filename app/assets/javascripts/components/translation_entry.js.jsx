@@ -2,15 +2,17 @@ var TranslationEntry = React.createClass({
   propTypes: {
     path: React.PropTypes.string,
     defaultLanguageTranslation: React.PropTypes.string,
+    defaultIsoCode: React.PropTypes.string,
     updateUrl: React.PropTypes.string
   },
 
   render: function() {
     var updateUrl = this.props.updateUrl;
+    var defaultIsoCode = this.props.defaultIsoCode;
     var translations = this.props.translations.map(function (translation) {
       return (
         <Translation key={translation['id']} value={translation['value']} language={translation['language_id']}
-          isoCode={translation['iso_code']} updateUrl={updateUrl} translationEntryId={translation['translation_entry_id']}
+          isoCode={translation['iso_code']} defaultIsoCode={defaultIsoCode} updateUrl={updateUrl} translationEntryId={translation['translation_entry_id']}
           translationId={translation['id']}
         />
       );

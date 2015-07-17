@@ -34,7 +34,8 @@ class TranslationEntriesController < ApplicationController
       data <<  {
         id: translations[0].translation_entry.id,
         path: translations[0].translation_entry.path,
-        defaultLanguageTranslation: translations[0].value,
+        defaultLanguageTranslation: translations[0].value, # TODO: fix here
+        defaultIsoCode: @project.default_language.iso_code,
         translations: translations
       }
     end

@@ -3,7 +3,8 @@ var Translation = React.createClass({
     value: React.PropTypes.string,
     language: React.PropTypes.number,
     isoCode: React.PropTypes.string,
-    updateUrl: React.PropTypes.string
+    updateUrl: React.PropTypes.string,
+    defaultIsoCode: React.PropTypes.string
   },
   componentDidMount: function() {
     $(this.refs.editable.getDOMNode()).editable({
@@ -26,6 +27,8 @@ var Translation = React.createClass({
     }
     var classString = "flag " + flagCountry;
     var updateUrl = this.props.updateUrl + '/' + this.props.translationEntryId + '/translations/' + this.props.translationId;
+    var googleTranslateLink = url  = "https://translate.google.pl/?ie=UTF-8#" + this.props.isoCode + "/" +  this.props.defaultIsoCode + "/" + this.props.value;
+    var displayGoogleTranslate = (this.props.isoCode === this.props.defaultIsoCode) ? 'none' : 'block';
     return (
       <div className="row marg-bot-lg translation-item">
         <div className="col-xs-2 text-left f16">
@@ -42,7 +45,9 @@ var Translation = React.createClass({
           <br/>
           <i className="fa fa-question fa-lg marg-bot"></i>
           <br/>
-          <i className="fa fa-google fa-lg marg-bot text-info"></i>
+          <a href={googleTranslateLink} title="Translate on Google" target="_blank" style={{display: displayGoogleTranslate}}>
+            <i className="fa fa-google fa-lg marg-bot text-info"></i>
+          </a>
         </div>
       </div>
     );

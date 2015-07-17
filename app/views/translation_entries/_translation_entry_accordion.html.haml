@@ -36,7 +36,6 @@
             -#  .btn.btn-success.btn-sm.text-uppercase Update
             -#  .btn.btn-grey.btn-sm.text-uppercase Cancel
           .col-xs-2.text-center
-            = link_to_google_translate t('texts.translate_google_html'), from_language: translation.language.iso_code, to_language: 'en', text: translation.value, target: '_blank'
             %select.form-control.input-sm
               %option{:value => "1"} Completed
               %option{:value => "2"} Incomplete
