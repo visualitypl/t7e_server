@@ -30,7 +30,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :projects, :only => [:show, :update]
+      resources :projects, :only => [:show, :update] do
+        member do
+          get :show_gettext
+          patch :update_gettext
+          put :update_gettext
+        end
+      end
     end
   end
 end

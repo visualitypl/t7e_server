@@ -29,7 +29,7 @@ module Action
     def save_to_db
       get_pairs
       @pairs.each do |pair|
-        te = @project.translation_entries.find_by_path(pair.path)
+        te = @project.translation_entries.yaml.find_by_path(pair.path)
         if !te
           action = Action::CreateTranslationEntry.new(@project, pair.path, pair.key_type)
           te = action.execute

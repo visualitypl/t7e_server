@@ -10,6 +10,7 @@ gem 'devise_invitable'
 gem 'factory_girl_rails', :require => false
 gem 'faker'
 gem 'font-awesome-sass'
+gem 'grosser-pomo'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
