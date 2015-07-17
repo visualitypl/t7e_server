@@ -26,7 +26,7 @@ class TranslationEntriesController < ApplicationController
   def search
     query = ::TranslationEntryQuery.new(project: @project, search_keyword: params[:search_keyword])
 
-    @translation_keys = query.results.includes(:translations).limit(30)
+    @translation_keys = query.results.includes(:translations).order('translation_entries.id ASC').order('translations.language_id ASC').limit(30)
 
     set_translations
     data = []
