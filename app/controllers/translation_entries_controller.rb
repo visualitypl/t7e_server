@@ -9,10 +9,11 @@ class TranslationEntriesController < ApplicationController
 
   def index
     #TODO: refactor
+    #TODO: last updated ones
     # root_entry = @project.translation_entries.where(parent_entry_id: nil).first!
     @translation_entries = @project.translation_entries
                                .where(parent_entry_id: nil)
-                               .order(:key_type => :desc, key: :asc).all
+                               .order(:key_type => :desc, key: :asc).limit(30)
     render 'show'
   end
 
@@ -93,8 +94,12 @@ class TranslationEntriesController < ApplicationController
     if params[:action] == 'show_key'
       @translation_keys = [@translation_entry]
     else
-      @translation_keys = @project.translation_entries
-                              .where(parent_entry: @translation_entry).key.includes(:translations).all
+      if @translation_entry
+        @translation_keys = @project.translation_entries
+                                .where(parent_entry: @translation_entry).key.includes(:translations).all
+      else
+        @translation_keys = []
+      end
     end
 
   end
