@@ -33,10 +33,16 @@ var TranslationList = React.createClass({
     });
 
     return (
-
       <div className="row marg-top-xl">
         <div className="col-lg-10 col-lg-offset-1">
-           <div className="translation-panel">
+          <div className="row">
+            <div className="col-lg-6 col-lg-offset-6">
+              <div className="text-right marg-bot-lg">
+                <a href={updateUrl+ "/new?key_type=key"} className="btn btn-success">New translations enrty</a>
+              </div>
+            </div>
+          </div>
+          <div className="translation-panel">
             <div className="main-search marg-bot">
               <div className="input-group">
                 <input className="form-control" placeholder="Search" type="text" onChange={this.handleChange}/>
