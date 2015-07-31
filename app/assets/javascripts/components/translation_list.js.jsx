@@ -15,6 +15,9 @@ var TranslationList = React.createClass({
       }.bind(this)
     });
   },
+  componentWillMount: function(){
+    this.loadTranslationsFromServer = _.debounce(this.loadTranslationsFromServer,300);
+  },
   handleChange: function(event){
     if (event.target.value.length > 1){
       this.loadTranslationsFromServer(event.target.value);
@@ -25,7 +28,7 @@ var TranslationList = React.createClass({
     var updateUrl = this.props.updateUrl;
     var translationEntries = this.state.data.map(function (translationEntry) {
       return (
-        <TranslationEntry path={translationEntry['path']} defaultLanguageTranslation={translationEntry['defaultLanguageTranslation']} translations={translationEntry['translations']} updateUrl={updateUrl}/>
+        <TranslationEntry key={translationEntry['id']} path={translationEntry['path']} defaultLanguageTranslation={translationEntry['defaultLanguageTranslation']} defaultIsoCode={translationEntry['defaultIsoCode']} translations={translationEntry['translations']} updateUrl={updateUrl}/>
       );
     });
 

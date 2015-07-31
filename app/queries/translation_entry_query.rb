@@ -6,6 +6,6 @@ class TranslationEntryQuery
 
   def results
     @project.translation_entries.key.joins(:translations)
-      .where('translations.value LIKE ? OR translation_entries.path LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%")
+      .where('translations.value ILIKE ? OR translation_entries.path ILIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%")
   end
 end

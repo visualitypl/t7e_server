@@ -1,0 +1,31 @@
+{
+  "name": "T7e Open source translate app",
+  "description": "An open source translate app built by Visuality",
+  "repository": "https://github.com/visualitypl/t7e_server",
+  "keywords": ["rails", "internalization"],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate db:seed"
+  },
+  "success_url": "/",
+  "env": {
+    "HEROKU": {
+      "description": "A variable for telling the application it's on heroku environment.",
+      "value": "true"
+    },
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "T7E_HOST": {
+      "description": "Heroku application domain address.",
+      "value": "some-hostname.herokuapp.com"
+    },
+    "T7E_EMAIL_FROM": {
+      "description": "Default email from.",
+      "value": "example@example.com"
+    }
+  },
+  "addons": [
+    "sendgrid:starter"
+  ]
+}

@@ -22,7 +22,6 @@
             .preview
               = link_to translation.value, '#', class: 'translation-editable', 'data-url' => project_translation_entry_translation_path(translation_entry_id: translation.translation_entry, id: translation)
           .col-xs-2.text-center
-            = link_to_google_translate t('texts.translate_google_html'), from_language: translation.language.iso_code, to_language: 'en', text: translation.value, target: '_blank'
             %select.form-control.input-sm
               %option{:value => "1"} Completed
               %option{:value => "2"} Incomplete

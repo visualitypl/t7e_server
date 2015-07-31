@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title T7e
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body
+    - if notice
+      .alert.alert-success
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+        .text-center.font-bold= notice
+
+    - if alert
+      .alert.alert-danger
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+        .text-center.font-bold= alert
+    .container-fluid
+      = yield
+= render partial: 'shared/modal'

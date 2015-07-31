@@ -43,13 +43,16 @@ class ProjectUsersController < ApplicationController
   end
 
   private
+
   def load_project_user
     @project_user = ProjectUser.find(params[:id])
     @user = @project_user.user
   end
+
   def permitted_params
     params.require(:user).permit(:name, :email)
   end
+
   def permitted_params_for_project_user
     params.require(:project_user).permit(:project_id, :user_type)
   end

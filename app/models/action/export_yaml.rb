@@ -28,7 +28,7 @@ module Action
     private
     def directory_hash(path, name=nil)
       data = (children = {})
-      @project.translation_entries.where(parent_entry: path).each do |entry|
+      @project.translation_entries.yaml.where(parent_entry: path).each do |entry|
         if entry.block?
           children[entry.key] = directory_hash(entry, entry.key)
         else

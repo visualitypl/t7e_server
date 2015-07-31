@@ -21,7 +21,9 @@ class ProjectsController < ApplicationController
       format.html { redirect_to root_path }
     end
   end
+
   private
+
   def set_project
     @project = Project.find(params[:id])
   end

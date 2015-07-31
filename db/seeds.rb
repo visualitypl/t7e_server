@@ -20,5 +20,5 @@ Language.create!(
 #Admin
 User.create!(
     email: 'admin@example.com',
-    password: '12345678'
+    password: 'password'
 )

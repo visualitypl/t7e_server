@@ -42,17 +42,18 @@ class TranslationsController < ApplicationController
   end
 
   private
-    def set_translation_entry
-      @translation_entry = TranslationEntry.find(params[:translation_entry_id])
-    end
 
-    def set_translation
-      @translation = Translation.find(params[:id])
-    end
+  def set_translation_entry
+    @translation_entry = TranslationEntry.find(params[:translation_entry_id])
+  end
 
-    def translation_params
-      params.require(:translation).permit(:translation_entry_id, :value, :language_id)
-    end
+  def set_translation
+    @translation = Translation.find(params[:id])
+  end
+
+  def translation_params
+    params.require(:translation).permit(:translation_entry_id, :value, :language_id)
+  end
 
   def translation_params_js
     params.permit(:translation_entry_id, :value, :language_id)
@@ -61,5 +62,4 @@ class TranslationsController < ApplicationController
   def create_translation_revision
     @translation.create_translation_revision!(current_user)
   end
-
 end
