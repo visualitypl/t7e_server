@@ -20,21 +20,7 @@
             %h4.font-bold.text-uppercase.inline= translation.language.iso_code
           .col-xs-8
             .preview
-              -#%a#username{"data-defaultValue" => 'Click to enter new value', "data-pk" => "1", "data-type" => "textarea", "data-rows" => "4", "data-title" => "Enter username", "data-type" => "text", "data-url" => "/post", :href => "#"}= translation.value
               = link_to translation.value, '#', class: 'translation-editable', 'data-url' => project_translation_entry_translation_path(translation_entry_id: translation.translation_entry, id: translation)
-            -#.inline-edit
-            -#  = simple_form_for translation, url: project_translation_entry_translation_path(translation_entry_id: translation_key.id, id: translation.id) do |f|
-            -#    = f.error_notification
-            -#    .form-inputs
-            -#      = f.input :value, as: :text, label: false
-            -#    .text-left.marg-top
-            -#      = f.button :submit, class: 'btn btn-success btn-sm text-uppercase'
-            -#      .btn.btn-grey.btn-sm.text-uppercase Cancel
-            -#  .btn.btn-success.btn-sm.text-uppercase Update
-            -#%textarea.form-control{:name => "", :rows => "3"}
-            -#.text-left.marg-top
-            -#  .btn.btn-success.btn-sm.text-uppercase Update
-            -#  .btn.btn-grey.btn-sm.text-uppercase Cancel
           .col-xs-2.text-center
             = link_to_google_translate t('texts.translate_google_html'), from_language: translation.language.iso_code, to_language: 'en', text: translation.value, target: '_blank'
             %select.form-control.input-sm
