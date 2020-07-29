@@ -1,3 +1,7 @@
+# Archived
+
+Development and support for this project has been ceased.
+
 # T7e
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
